@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html>
+ {% load staticfiles %}
+<head>
+    <meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Edit Program</title>
+	
+    <!-- bootstrap -->
+    <link href="{% static 'assets/css/bootstrap/bootstrap.css'%}" rel="stylesheet" />
+
+    <!-- libraries -->
+    <link href="{% static 'assets/css/libs/font-awesome.css'%}" type="text/css" rel="stylesheet" />
+
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/compiled/layout.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/compiled/elements.css'%}">
+
+    <!-- google font libraries -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300|Titillium+Web:200,300,400' rel='stylesheet' type='text/css'>
+   <link rel="stylesheet" href="{% static 'assets/css/libs/select2.css'%}" type="text/css" />
+  
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-49262924-1', 'phoonio.com');
+	  ga('send', 'pageview');
+
+	</script>
+<style type="text/css">
+	.modal-field {
+	width:100%;
+	}
+</style>
+</head>
+<body>
+	<header class="navbar" id="header-navbar">
+		<div class="container">
+			<a href="#" id="logo" class="navbar-brand col-md-3 col-sm-3 col-xs-12">
+				<img style="width: 30px;margin-top: -5px;" src="{% static 'assets/img/trainmefit.png'%}" alt=""><span>TrainMeFit</span>
+			</a>
+			
+			<button class="navbar-toggle" data-target=".navbar-ex1-collapse" data-toggle="collapse" type="button">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="fa fa-bars"></span>
+			</button>
+			
+			<div class="nav-no-collapse pull-right" id="header-nav">
+				<ul class="nav navbar-nav pull-right">
+					<li class="mobile-search">
+						<a class="btn">
+							<i class="fa fa-search"></i>
+						</a>
+						
+						<div class="drowdown-search">
+							
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Search...">
+									<i class="fa fa-search nav-search-icon"></i>
+								</div>
+							
+						</div>
+						
+					</li>
+					<li class="dropdown hidden-xs">
+						<a class="btn dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-warning"></i>
+							<span class="count">8</span>
+						</a>
+						<ul class="dropdown-menu notifications-list">
+							<li class="pointer">
+								<div class="pointer-inner">
+									<div class="arrow"></div>
+									<div class="arrow-border"></div>
+								</div>
+							</li>
+							<li class="item-header">You have 6 new notifications</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-comment"></i>
+									<span class="content">New comment on ‘Awesome P...</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-plus"></i>
+									<span class="content">New user registration</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-envelope"></i>
+									<span class="content">New Message from George</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-shopping-cart"></i>
+									<span class="content">New purchase</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-eye"></i>
+									<span class="content">New order</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item-footer">
+								<a href="#">
+									View all notifications
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown hidden-xs">
+						<a class="btn dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-envelope-o"></i>
+							<span class="count">16</span>
+						</a>
+						<ul class="dropdown-menu notifications-list messages-list">
+							<li class="pointer">
+								<div class="pointer-inner">
+									<div class="arrow"></div>
+									<div class="arrow-border"></div>
+								</div>
+							</li>
+							<li class="item first-item">
+								<a href="#">
+									<img src="img/samples/messages-photo-1.png" alt=""/>
+									<span class="content">
+										<span class="content-headline">
+											George Clooney
+										</span>
+										<span class="content-text">
+											Look, just because I don't be givin' no man a foot massage don't make it 
+											right for Marsellus to throw...
+										</span>
+									</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<img src="img/samples/messages-photo-2.png" alt=""/>
+									<span class="content">
+										<span class="content-headline">
+											Emma Watson
+										</span>
+										<span class="content-text">
+											Look, just because I don't be givin' no man a foot massage don't make it 
+											right for Marsellus to throw...
+										</span>
+									</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<img src="img/samples/messages-photo-3.png" alt=""/>
+									<span class="content">
+										<span class="content-headline">
+											Robert Downey Jr.
+										</span>
+										<span class="content-text">
+											Look, just because I don't be givin' no man a foot massage don't make it 
+											right for Marsellus to throw...
+										</span>
+									</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item-footer">
+								<a href="#">
+									View all messages
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="hidden-xs">
+						<a class="btn">
+							<i class="fa fa-cog"></i>
+						</a>
+					</li>
+					<li class="dropdown profile-dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<img src="img/samples/profile-photo.png" alt=""/>
+							<span class="hidden-xs">Scarlett Johansson</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="user-profile.html"><i class="fa fa-user"></i>Profile</a></li>
+							<li><a href="#"><i class="fa fa-cog"></i>Settings</a></li>
+							<li><a href="#"><i class="fa fa-envelope-o"></i>Messages</a></li>
+							<li><a href="/sign-out-admin/"><i class="fa fa-power-off"></i>Logout</a></li>
+						</ul>
+					</li>
+					<li class="hidden-xxs">
+						<a href="/sign-out-admin/" class="btn">
+							<i class="fa fa-power-off"></i>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2" id="nav-col">
+				<section id="col-left">
+					<div class="collapse navbar-collapse navbar-ex1-collapse" id="sidebar-nav">	
+						<ul class="nav nav-pills nav-stacked">
+							<li>
+								<a href="/dashboard/">
+									<i class="fa fa-dashboard"></i>
+									<span>Dashboard</span>
+								</a>
+							</li>
+							<li>
+								<a href="/user-section/">
+									<i class="fa fa-users"></i>
+									<span>Customers</span>
+									
+								</a>								
+							</li>
+							<li>
+								<a href="/program-list/">
+									<i class="fa fa-calendar"></i>
+									<span>Programs</span>
+								</a>
+							</li>
+							<li>
+								<a href="/workout/">
+									<i class="fa fa-star-o"></i>
+									<span>Workouts</span>
+								</a>
+
+							</li>
+							<li>
+								<a href="/exercise-list/" >
+									<i class="fa fa-rocket"></i>
+									<span>Exercises</span>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="fa fa-gbp"></i>
+									<span>Payments</span>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="fa fa-gears"></i>
+									<span>Services</span>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="fa fa-table"></i>
+									<span>Master Tables</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</section>
+			</div>
+			<div class="col-md-10" id="content-wrapper">
+				<div class="row">
+					<div class="col-lg-12">
+						<form role="form" id="targets" name="targets" action="/update-program/" method="POST" >
+                  {% csrf_token %}						
+						<div class="clearfix">
+							<h1 class="pull-left">Programs</h1>						
+						</div>
+								<div class="main-box clearfix">
+								   <div class="row">
+										<div class="clearfix">
+											<h2 class="pull-left">Edit Program</h2>
+											
+											<div class="filter-block pull-right">
+												<a href="/program-list/" class="btn btn-primary pull-right" style="width: 175px;">
+													<i class="fa  fa-lg"></i>Cancel
+												</a>	
+												<!-- <a href="#" class="btn btn-primary pull-right" style="width: 175px;">
+													<i class="fa  fa-lg"></i>Save
+												</a> -->
+												
+											<input type="submit" class="btn btn-primary pull-right" value="Save" style="width: 175px;"><i class="fa  fa-lg"></i> </input>
+											</a>											
+											
+											</div>
+										</div>
+								 </div>
+									<div class="row">	
+									  <div class="col-lg-6"> 
+									    
+										  <div class="form-group">										    
+											<label for="exampleInputEmail1">Name</label>
+											<input type="text" pattern="[a-zA-Z\s]+" required="required" class="form-control" name="program_name" value="{{program_name}}" id="exampleInputEmail1" placeholder="" style="width: 100%;"></input>
+											</div>
+											
+										  </div>
+										  <div class="form-group form-group-select2">
+										  		
+									<div class="col-lg-3"> 
+									 
+									  <div class="form-group">										    
+											<label for="exampleInputEmail1" >Objective</label>
+											<select style="width:100%" name="program_user_objective_id" id="sel3">
+   															<option value="{{ objective_id }}">{{ objective }}</option>
+   															{% for objective_txt in objective_list  %}
+											    				<option value="{{ objective_txt.objective_id }}">{{ objective_txt.objective }}</option>											    				
+											    				{% endfor %}	
+											</select>
+											</div>
+											
+								 	</div>
+								 		
+										
+   																				
+								</div>		  										  															
+						</div> 
+										
+						<div class="row">	
+								<div class="col-lg-3">											
+												  <div class="form-group">
+													<label for="exampleInputEmail1">Gender</label>
+														<select style="width:100%" name="program_user_gender" id="sel4">
+											    				<option>Male</option>
+											    				<option>Female</option>		
+														</select>
+													</div>																		
+										</div>
+									<div class="col-lg-3"> 									    			
+										  				<div class="form-group">										    
+															<label for="exampleInputEmail1">Gym Access</label>
+															<select style="width:100%" name="program_gym_access" id="sel2">
+											    				<option>Yes</option>
+											    				<option>No</option>		
+															</select>											
+														</div>
+													
+										  		</div>
+										  
+								<div class="col-lg-3">
+											
+												  <div class="form-group">
+													<label for="exampleInputEmail1"> Total Days</label>
+													<input type="number" name="program_total_days"  required="required" class="form-control" id="exampleInputEmail1" value="{{days}}" placeholder=""></input>
+													</div>
+																		
+								</div>
+									<div class="col-lg-3">
+											
+												  <div class="form-group">
+													<label for="exampleInputEmail1">Status</label>
+														<select style="width:100%" name="status_combo" id="status">
+																<option value="{{status}}" selected>{{status}}</option>
+											    				<option value="Active">Active</option>
+											    				<option value="Inactive">Inactive</option>		
+														</select>
+													</div>
+																		
+										</div> 	
+									
+										
+																							
+									</div>
+									
+									<div class="row">	
+									<div class="col-lg-3">
+											
+												  <div class="form-group">
+													<label for="exampleInputEmail1">Created By </label>
+													<input type="email" class="form-control" value="{{created_by}}" id="exampleInputEmail1" placeholder="" readonly></input>
+													</div>
+																		
+										</div>									
+									
+										<div class="col-lg-3">
+											
+												  <div class="form-group">
+													<label for="exampleInputEmail1">Created Date </label>
+													<input type="email" class="form-control" value="{{created_date}}" id="exampleInputEmail1" placeholder="" readonly></input>
+													</div>
+																	
+										</div>
+										<div class="col-lg-3">
+											
+												  <div class="form-group">
+													<label for="exampleInputEmail1">Last Updated By </label>
+													<input type="email" class="form-control" value="{{updated_by}}" id="exampleInputEmail1" placeholder="" readonly></input>
+													</div>
+																		
+										</div>
+										<div class="col-lg-3">
+											
+												  <div class="form-group">
+													<label for="exampleInputEmail1">Last Updated Date</label>
+													<input type="email" class="form-control" value="{{updated_date}}" id="exampleInputEmail1" placeholder="" readonly></input>
+													</div>
+																	
+										</div>
+   															
+									</div>	
+									
+									<!-- -----------------Display None------------------- -->
+									<div class="row">
+											<div class="col-lg-3">
+										<input type="hidden" value="{{program_id}}" name="program_id_test" placeholder="" readonly></input> 
+												  <div class="form-group">													
+														<select style="width:100%; display:none" name="workout_time" id="workout_time" >
+											    				{% for workout_obj_txt in workout_list  %}																									    				
+											    				<option value="{{workout_obj_txt.workout_id}}">{{workout_obj_txt.workout_time}}</option>
+											    				{% endfor %}											    						
+														</select>
+													</div>																		
+										</div>
+										
+											<div class="col-lg-3">											
+												  <div class="form-group">													
+														<select style="width:100%; display:none" name="total_execises" id="total_execises" >
+											    				{% for workout_obj_txt in workout_list  %}																									    				
+											    				<option value="{{workout_obj_txt.workout_id}}">{{workout_obj_txt.workout_execises}}</option>
+											    				{% endfor %}											    						
+														</select>
+													</div>																
+										</div>
+									</div>
+									<!-- ------------------------------------------------ -->								
+									<div class="row">	
+									    <div class="col-lg-4">
+										
+												  <div class="form-group">
+													<label for="exampleInputEmail1">Intensity</label>
+														<select style="width:100%" name="gym_access" id="sel5">
+											    				<option>Easy</option>
+											    				<option>Medium</option>	
+											    				<option>Hard</option>		
+														</select>
+													</div>
+																	
+										</div>	
+										<div class="col-lg-4">
+											
+												  <div class="form-group">
+													<label for="exampleInputEmail1">Workout</label>														
+											    		<select style="width:100%" name="workout" id="sel6">																
+																<!-- {% for workout_obj_txt in workout_list  %}																									    				
+											    				<option value="{{workout_obj_txt.workout_id}}">{{workout_obj_txt.workout_name}}</option>
+											    				{% endfor %}	 -->
+														</select>
+													</div>
+																	
+										</div>
+											<div class="col-lg-3">
+												  <div class="form-group">
+													<label for="exampleInputEmail1">Day</label>
+														<select style="width:100%" name="days" id="sel7">
+											    				<option>Sunday</option>
+											    				<option>Monday</option>	
+																<option>Tuesday</option>
+																<option>Wednesday</option>
+											    				<option>Thuesday</option>	
+																<option>Friday</option>	
+																<option>Saturday</option>			
+														</select>
+													</div>
+										</div>
+											<div class="col-lg-1">	
+													<label for="exampleInputEmail1">&nbsp;</label><br>
+													<div id="btnAdd" class="btn btn-success">Add</div>	
+										</div>
+										
+									</div>
+									</form>										
+										<div class="table-responsive">
+											<table class="table" id="workout_table">
+												<thead>
+													<tr>														
+													<th class="text-center"><span>Workout</span></th>
+														<th class="text-center"><span>Days</span></th>
+														<th class="text-center"><span>Exercises</span></th>
+														<th class="text-center"><span>Time</span></th>
+														<th class="text-center"><span>Intensity</span></th>
+														<th class="text-center"><span>Delete</span></th>															
+														<th>&nbsp;</th>
+											  </thead>
+											<tbody>
+												{% for workout in list_workout  %}
+													<tr>
+														 <td class="text-center"> {{ workout.workout_name }} </td>	
+														 <td class="text-center"> {{ workout.days }} </td>
+														 <td class="text-center"> {{ workout.execises }} </td>														 
+														 <td class="text-center"> {{ workout.time }} </td>	
+														 <td class="text-center"> {{ workout.intensity }} </td>
+														 <td class="text-center">
+													
+														<a class="delete table-link danger" style="cursor: pointer;" id="{{workout.program_workout_id}}">
+															<span class="fa-stack">
+																<i class="fa fa-square fa-stack-2x"></i>
+																<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+															</span>
+														</a>	
+																										
+													</td>
+													</tr>	
+													{% endfor %}	
+											</tbody>
+										</table>
+									</div>	
+										
+									</div>		
+									</div>
+									<ul class="pagination pull-right">
+										<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+										<li><a href="#">1</a></li>
+										<li><a href="#">2</a></li>
+										<li><a href="#">3</a></li>
+										<li><a href="#">4</a></li>
+										<li><a href="#">5</a></li>
+										<li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					
+					</div>
+	<div class="row">
+		<div class="col-lg-8">				
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-body">      
+				     <div class="row">
+			        		<div class="col-lg-12">
+				        		<div class="main-box">
+									<h2>Workout</h2>
+										<div class="row">
+											
+												<div class="form-group">
+													<div class="col-lg-12 ">
+														<label class="sr-only" for="exampleInputEmail2">Workout</label>
+														<input class="form-control" style="width:110%" id="exampleInputEmail2" placeholder="Workout" type="text">
+													</div>										 									
+												</div>
+											
+										</div>													
+									</div>
+							</div>	
+					</div>
+			    </div>
+				  <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal" style="width: 22%;">Close</button>
+			        <button type="button" class="btn btn-primary">Save changes</button>
+		      	</div>
+			  </div>
+			</div>
+	 	</div>
+	</div>					
+</div>		
+	<footer id="footer-bar">
+	<p id="footer-copyright">
+			&copy; 2015-16 <a href="http://www.trainmefit.co.uk/" target="_blank">TrainMeFit</a>
+		</p>
+	</footer>
+	
+	<!-- global scripts -->
+	<script src="{% static 'assets/js/jquery.js'%}"></script>
+	<script src="{% static 'assets/js/bootstrap.js'%}"></script>
+	
+	<!-- this page specific scripts -->
+	<script src="{% static 'assets/js/bootstrap-wizard.js'%}"></script>
+	<script src="{% static 'assets/js/select2.min.js'%}"></script>
+	
+	<!-- theme scripts -->
+	<script src="{% static 'assets/js/scripts.js'%}"></script>	
+	
+</body>
+
+<script>
+
+
+  $("#sel5").click(function(event){  	
+     // 	alert ($('#exercise_gender selected').val());						
+      	console.log('I am in event');
+		      $.ajax({
+				   type	: 'GET',
+			      url	: '/get-workout-by-intensity/',
+			      data  : {'workout_intensity':$('#sel5 option:selected').text()},
+			      success: function(response){
+				      console.log(response);
+				      $('#sel6').html('');				      
+				      $.each(response.workout_list, function(index, item) {
+				      		$('#sel6').append('<option value="' +item.workout_id + '">'+item.workout_name+'</option>');
+								 console.log(index +' -- ' +item.exercise_id + '--' + item.exercise_name);
+						});
+					},
+					error: function(response){
+						console.log("Error"+response);
+					}
+					
+				});
+					
+		 });
+
+$('#sel6').click(function(){
+	$('#workout_time').val($('#sel6 option:selected').val());
+	$('#total_execises').val($('#sel6 option:selected').val());
+	
+});
+
+$("#btnAdd").click(function()  {	
+		
+		var check_workout_status=0;
+		var check_day_status=0;
+		
+		if($('#sel6 option:selected').text()===""){ 
+		  alert('Please select workout !');
+        return false;   
+    	}		
+		
+			$("#workout_table tr").each(function(){
+				if($(this).children('td:eq(1)').text().trim()==$('#sel7 option:selected').text().trim()){				
+				check_day_status=1;
+				}	
+				}		
+			);			
+			
+			if(check_day_status==1){
+				check_day_status=0;
+				alert('This day is already assigned to other workout');
+				return false;			
+			}
+					
+				$("#workout_table tr").each(function(){
+				if($(this).children("td:first").text().trim()==$('#sel6 option:selected').text().trim()){				
+				check_workout_status=1;
+				}	
+				}		
+			);
+			
+			if(check_workout_status==1){
+				scheck_workout_status=0;
+				alert('This Workout is already assigned');
+				return false;			
+			}			
+		
+			$.ajax({
+					   type	: 'GET',
+				      url	: '/add-program-workout/',
+				      data  : { 'program_id':$('#program_id').val(),'workout_id':$('#sel6 option:selected').val(),'day':$('#sel7 option:selected').text() },
+				      success: function(response){				
+							console.log("add instruction");
+								$("#workout_table").append(
+										"<tr>"+				
+												'<td class="text-center">'+ $('#sel6 option:selected').text()+'</td>'+
+												'<td class="text-center">'+ $('#days_dropdown').val()+"</td>"+
+												'<td class="text-center">'+ $('#total_execises option:selected').text()+'</td>'+
+												'<td class="text-center">'+ $('#workout_time option:selected').text()+'</td>'+
+												'<td class="text-center">'+ $('#sel5').val()+"</td>"+
+												'<td class="text-center"> <a id="b1" class="delete table-link danger deleterow" style="cursor: pointer;" ><span class="fa-stack"><i class="fa fa-square fa-stack-2x"></i>' +
+												'<i class="fa fa-trash-o fa-stack-1x fa-inverse" onclick="delete_row($(this))"></i> </span></a>'+ '</td>'+					
+										"</tr>"				
+									);	
+									location.reload();
+						},		
+				});
+	});		
+		
+			
+	$('.delete').click(function(){			
+			var tr = this;
+			console.log('Hello')
+			$.ajax({
+				   type	: 'GET',
+			      url	: '/delete-program-workout/',
+			      data  : {'program_workout_id': this.id },
+			      success: function(response){
+			      console.log('I m deleting');
+			      console.log(response);
+			      	if(response.success == 'true'){
+						  $(tr).parents('tr').remove();
+						}
+					},
+			}); 
+		
+		});
+
+	$(function($) {	
+		//tooltip init
+		
+	$('#workout_time').val($('#sel6 option:selected').val());
+	$('#total_execises').val($('#sel6 option:selected').val());
+	
+		$('#exampleTooltip').tooltip();
+
+		//nice select boxes
+		$('#sel2').select2();
+		$('#sel3').select2();
+		$('#sel4').select2();
+		$('#sel5').select2();
+		$('#sel6').select2();
+		$('#sel7').select2();
+		$('#status').select2();
+		
+		$('#sel2Multi').select2({
+			placeholder: 'Select a Country',
+			allowClear: true
+		});
+	
+	// This is for toggle switch
+	
+		$('#myonoffswitch4').change(function() { 
+			//$('.onoffswitch-inner').html('Toggle: ' + $(this).prop('checked'));
+			console.log($(this).prop('checked'));
+			$('#switch_gym').val($(this).prop('checked'));
+			
+		});
+	
+	
+		//masked inputs
+		$("#maskedDate").mask("99/99/9999");
+		$("#maskedPhone").mask("(999) 999-9999");
+		$("#maskedPhoneExt").mask("(999) 999-9999? x99999");
+		$("#maskedTax").mask("99-9999999");
+		$("#maskedSsn").mask("999-99-9999");
+		
+		$("#maskedProductKey").mask("a*-999-a999",{placeholder:" ",completed:function(){alert("You typed the following: "+this.val());}});
+		
+		$.mask.definitions['~']='[+-]';
+		$("#maskedEye").mask("~9.99 ~9.99 999");
+	
+		//datepicker
+		$('#datepickerDate').datepicker({
+		  format: 'mm-dd-yyyy'
+		});
+
+		$('#datepickerDateComponent').datepicker();
+		
+		//daterange picker
+		$('#datepickerDateRange').daterangepicker();
+		
+		//timepicker
+		$('#timepicker').timepicker({
+			minuteStep: 5,
+			showSeconds: true,
+			showMeridian: false,
+			disableFocus: false,
+			showWidget: true
+		}).focus(function() {
+			$(this).next().trigger('click');
+		});
+		
+		//autocomplete simple
+		$('#exampleAutocompleteSimple').typeahead({                              
+			prefetch: '/data/countries.json',
+			limit: 10
+		});
+		
+		//autocomplete with templating
+		$('#exampleAutocomplete').typeahead({                              
+			name: 'twitter-oss',                                                        
+			prefetch: '/data/repos.json',                                             
+			template: [                                                              
+				'<p class="repo-language">{{language}}</p>',                              
+				'<p class="repo-name">{{name}}</p>',                                      
+				'<p class="repo-description">{{description}}</p>'                         
+			].join(''),                                                                 
+			engine: Hogan                                                               
+		});
+		
+		//password strength meter
+		$('#examplePwdMeter').pwstrength({
+			label: '.pwdstrength-label'
+		});
+		
+	});
+	
+	function delete_row(row) { 
+   row.closest('tr').remove();    
+}
+	</script>
+</html>

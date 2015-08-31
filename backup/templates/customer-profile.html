@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html>
+ {% load staticfiles %}
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Customer Profile</title>
+	
+	<!-- bootstrap -->
+	<link href="{% static 'assets/css/bootstrap/bootstrap.css'%}" rel="stylesheet" />
+
+	<!-- libraries -->
+	<link href="{% static 'assets/css/libs/font-awesome.css" type="text/css" rel="stylesheet'%}" />
+
+	<!-- global styles -->
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/compiled/layout.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/compiled/elements.css'%}">
+
+	<!-- google font libraries -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300|Titillium+Web:200,300,400' rel='stylesheet' type='text/css'>
+
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-49262924-1', 'phoonio.com');
+	  ga('send', 'pageview');
+
+	</script>
+</head>
+<body>
+	<header class="navbar" id="header-navbar">
+		<div class="container">
+			<a href="#" id="logo" class="navbar-brand col-md-3 col-sm-3 col-xs-12">
+				<img style="width: 30px;margin-top: -5px;" src="{% static 'assets/img/trainmefit.png'%}" alt=""><span>TrainMeFit</span>
+			</a>
+			
+			<button class="navbar-toggle" data-target=".navbar-ex1-collapse" data-toggle="collapse" type="button">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="fa fa-bars"></span>
+			</button>
+			
+			<div class="nav-no-collapse pull-right" id="header-nav">
+				<ul class="nav navbar-nav pull-right">
+					<li class="mobile-search">
+						<a class="btn">
+							<i class="fa fa-search"></i>
+						</a>
+						
+						<div class="drowdown-search">
+							<form role="search">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Search...">
+									<i class="fa fa-search nav-search-icon"></i>
+								</div>
+							</form>
+						</div>
+						
+					</li>
+					<li class="dropdown hidden-xs">
+						<a class="btn dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-warning"></i>
+							<span class="count">8</span>
+						</a>
+						<ul class="dropdown-menu notifications-list">
+							<li class="pointer">
+								<div class="pointer-inner">
+									<div class="arrow"></div>
+									<div class="arrow-border"></div>
+								</div>
+							</li>
+							<li class="item-header">You have 6 new notifications</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-comment"></i>
+									<span class="content">New comment on ‘Awesome P...</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-plus"></i>
+									<span class="content">New user registration</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-envelope"></i>
+									<span class="content">New Message from George</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-shopping-cart"></i>
+									<span class="content">New purchase</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-eye"></i>
+									<span class="content">New order</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item-footer">
+								<a href="#">
+									View all notifications
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown hidden-xs">
+						<a class="btn dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-envelope-o"></i>
+							<span class="count">16</span>
+						</a>
+						<ul class="dropdown-menu notifications-list messages-list">
+							<li class="pointer">
+								<div class="pointer-inner">
+									<div class="arrow"></div>
+									<div class="arrow-border"></div>
+								</div>
+							</li>
+							<li class="item first-item">
+								<a href="#">
+									<img src="img/samples/messages-photo-1.png" alt=""/>
+									<span class="content">
+										<span class="content-headline">
+											George Clooney
+										</span>
+										<span class="content-text">
+											Look, just because I don't be givin' no man a foot massage don't make it 
+											right for Marsellus to throw...
+										</span>
+									</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<img src="img/samples/messages-photo-2.png" alt=""/>
+									<span class="content">
+										<span class="content-headline">
+											Emma Watson
+										</span>
+										<span class="content-text">
+											Look, just because I don't be givin' no man a foot massage don't make it 
+											right for Marsellus to throw...
+										</span>
+									</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<img src="img/samples/messages-photo-3.png" alt=""/>
+									<span class="content">
+										<span class="content-headline">
+											Robert Downey Jr.
+										</span>
+										<span class="content-text">
+											Look, just because I don't be givin' no man a foot massage don't make it 
+											right for Marsellus to throw...
+										</span>
+									</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item-footer">
+								<a href="#">
+									View all messages
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="hidden-xs">
+						<a class="btn">
+							<i class="fa fa-cog"></i>
+						</a>
+					</li>
+					<li class="dropdown profile-dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<img src="img/samples/profile-photo.png" alt=""/>
+							<span class="hidden-xs">Scarlett Johansson</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="user-profile.html"><i class="fa fa-user"></i>Profile</a></li>
+							<li><a href="#"><i class="fa fa-cog"></i>Settings</a></li>
+							<li><a href="#"><i class="fa fa-envelope-o"></i>Messages</a></li>
+							<li><a href="/sign-out-admin/"><i class="fa fa-power-off"></i>Logout</a></li>
+						</ul>
+					</li>
+					<li class="hidden-xxs">
+						<a href="/sign-out-admin/" class="btn">
+							<i class="fa fa-power-off"></i>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2" id="nav-col">
+				<section id="col-left">
+					<div class="collapse navbar-collapse navbar-ex1-collapse" id="sidebar-nav">	
+						<ul class="nav nav-pills nav-stacked">
+					   <li>
+								<a href="/dashboard/">
+									<i class="fa fa-dashboard"></i>
+									<span>Dashboard</span>
+								</a>
+							</li>
+							<li>
+								<a href="/user-section/">
+									<i class="fa fa-users"></i>
+									<span>Customers</span>
+									
+								</a>								
+							</li>
+							<li>
+								<a href="/program-list/">
+									<i class="fa fa-calendar"></i>
+									<span>Programs</span>
+								</a>
+							</li>
+							<li>
+								<a href="/workout/">
+									<i class="fa fa-star-o"></i>
+									<span>Workouts</span>
+								</a>
+
+							</li>
+							<li>
+								<a href="/exercise-list/" >
+									<i class="fa fa-rocket"></i>
+									<span>Exercises</span>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="fa fa-gbp"></i>
+									<span>Payments</span>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="fa fa-gears"></i>
+									<span>Services</span>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="fa fa-table"></i>
+									<span>Master Tables</span>
+								</a>
+						</ul>
+					</div>
+				</section>
+			</div>
+			<div class="col-md-10" id="content-wrapper">
+				<div class="row">
+					<div class="col-lg-12">
+						
+						<h1>Customer Profile</h1>
+						<div class="row" id="user-profile">
+							<div class="col-lg-3 col-md-4 col-sm-4">
+								<div class="main-box clearfix">
+								<h2>Scarlett Johansson</h2>
+									
+									<div class="profile-status">
+										<i class="fa fa-check-circle"></i> Online
+									</div>
+									
+									<img src="img/samples/scarlet-159.png" alt="" class="profile-img img-responsive center-block" />
+									
+									<div class="profile-label">
+										<span class="label label-danger">Admin</span>
+									</div>
+									
+									<div class="profile-stars">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-o"></i>
+										<span>Super User</span>
+									</div>
+									
+									<div class="profile-since">
+										Member since: Jan 2012
+									</div>
+									
+									<div class="profile-details">
+										<ul class="fa-ul">
+											<li><i class="fa-li fa fa-truck"></i>Orders: <span>456</span></li>
+											<li><i class="fa-li fa fa-comment"></i>Posts: <span>828</span></li>
+											<li><i class="fa-li fa fa-tasks"></i>Tasks done: <span>1024</span></li>
+										</ul>
+									</div>
+									
+									<div class="profile-message-btn center-block text-center">
+										<a href="#" class="btn btn-success">
+											<i class="fa fa-envelope"></i>
+											Send message
+										</a>
+									</div>
+								</div>
+							</div>
+							
+							<div class="col-lg-9 col-md-8 col-sm-8">
+								<div class="main-box clearfix">
+									<div class="profile-header">
+										<h3><span>User info</span></h3>
+										
+										<a href="#" class="btn btn-primary edit-profile">
+											<i class="fa fa-pencil-square fa-lg"></i> 
+											Edit profile
+										</a>
+									</div>
+									
+									<div class="row profile-user-info">
+										<div class="col-sm-8">
+											<div class="profile-user-details clearfix">
+												<div class="profile-user-details-label">
+													First Name
+												</div>
+												<div class="profile-user-details-value">
+													Scarlett
+												</div>
+											</div>
+											<div class="profile-user-details clearfix">
+												<div class="profile-user-details-label">
+													Last Name
+												</div>
+												<div class="profile-user-details-value">
+													Johansson
+												</div>
+											</div>
+											<div class="profile-user-details clearfix">
+												<div class="profile-user-details-label">
+													Address
+												</div>
+												<div class="profile-user-details-value">
+													10880 Malibu Point,<br/> 
+													Malibu, Calif., 90265
+												</div>
+											</div>
+											<div class="profile-user-details clearfix">
+												<div class="profile-user-details-label">
+													Email
+												</div>
+												<div class="profile-user-details-value">
+													scarlett@avengers.com
+												</div>
+											</div>
+											<div class="profile-user-details clearfix">
+												<div class="profile-user-details-label">
+													Phone number
+												</div>
+												<div class="profile-user-details-value">
+													011 223 344 556 677
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-4 profile-social">
+											<ul class="fa-ul">
+												<li><i class="fa-li fa fa-twitter-square"></i><a href="#">@scjohansson</a></li>
+												<li><i class="fa-li fa fa-linkedin-square"></i><a href="#">Scarlett Johansson</a></li>
+												<li><i class="fa-li fa fa-facebook-square"></i><a href="#">Scarlett Johansson</a></li>
+												<li><i class="fa-li fa fa-skype"></i><a href="#">Black_widow</a></li>
+												<li><i class="fa-li fa fa-instagram"></i><a href="#">Avenger_Scarlett</a></li>
+											</ul>
+										</div>
+									</div>
+									
+									<div class="tabs-wrapper profile-tabs">
+										<ul class="nav nav-tabs">
+											<li class="active"><a href="#tab-activity" data-toggle="tab">Program</a></li>
+											<li><a href="#tab-friends" data-toggle="tab">Payment</a></li>
+											<li><a href="#tab-chat" data-toggle="tab">Other</a></li>
+										</ul>
+										
+																			
+										
+										<div class="tab-content">
+									<div class="profile-header">
+										<h3><span>Program Info</span></h3>
+										<a href="#" class="btn btn-primary edit-profile">
+											<i class="fa fa-pencil-square fa-lg"></i> 
+											Edit Program
+										</a>
+									</div>										
+										
+											<div class="tab-pane fade in active" id="tab-activity">
+												
+												<div class="table-responsive">
+													<table class="table">
+														<tbody>
+														
+														<div class="col-md-9">
+								<div class="main-box">
+									<div class="fc fc-ltr" id="calendar">
+									<table class="fc-header" style="width:100%">
+									<tbody><tr><td class="fc-header-left">
+									<span style="-moz-user-select: none;" unselectable="on" class="fc-button fc-button-prev fc-state-default fc-corner-left">
+									<i class="fa fa-chevron-left"></i>
+									</span>
+									<span style="-moz-user-select: none;" unselectable="on" class="fc-button fc-button-next fc-state-default fc-corner-right">
+									<i class="fa fa-chevron-right"></i>
+									</span>
+									<span class="fc-header-space"></span>
+									<span style="-moz-user-select: none;" unselectable="on" class="fc-button fc-button-today fc-state-default fc-corner-left fc-corner-right">today</span></td>
+									<td class="fc-header-center"><span class="fc-header-title"><h2>July 2015</h2></span></td>
+									<td class="fc-header-right">
+									<span style="-moz-user-select: none;" unselectable="on" class="fc-button fc-button-month fc-state-default fc-corner-left fc-state-active">month</span>
+									<span style="-moz-user-select: none;" unselectable="on" class="fc-button fc-button-agendaWeek fc-state-default">week</span>
+									<span style="-moz-user-select: none;" unselectable="on" class="fc-button fc-button-agendaDay fc-state-default fc-corner-right">day</span></td></tr></tbody></table>
+									<div class="fc-content" style="position: relative;">
+									<div unselectable="on" class="fc-view fc-view-month fc-grid" style="position: relative; -moz-user-select: none;">
+									<div class="fc-event-container" style="position:absolute;z-index:8;top:0;left:0">
+									<a unselectable="on" href="http://google.com/" class="fc-event fc-event-hori fc-event-draggable fc-event-start fc-event-end label-danger ui-draggable" style="position: absolute; left: 3px; width: 207px; top: 49px; -moz-user-select: none;">
+									<div class="fc-event-inner"><span class="fc-event-title">Click for Google</span></div>
+									<div class="ui-resizable-handle ui-resizable-e">&nbsp;&nbsp;&nbsp;</div></a></div>
+									<table class="fc-border-separate" style="width:100%" cellspacing="0">
+									<thead><tr class="fc-first fc-last"><th style="width: 106px;" class="fc-day-header fc-sun fc-widget-header fc-first">Sun</th>
+									<th style="width: 106px;" class="fc-day-header fc-mon fc-widget-header">Mon</th>
+									<th style="width: 106px;" class="fc-day-header fc-tue fc-widget-header">Tue</th>
+									<th style="width: 106px;" class="fc-day-header fc-wed fc-widget-header">Wed</th>
+									<th style="width: 106px;" class="fc-day-header fc-thu fc-widget-header">Thu</th>
+									<th style="width: 106px;" class="fc-day-header fc-fri fc-widget-header">Fri</th>
+									<th class="fc-day-header fc-sat fc-widget-header fc-last">Sat</th></tr></thead>
+									<tbody><tr class="fc-week fc-first"><td class="fc-day fc-sun fc-widget-content fc-other-month fc-future fc-first" data-date="2015-06-28">
+									<div style="min-height: 87px;"><div class="fc-day-number">28</div>
+									<div class="fc-day-content"><div style="position: relative; height: 24px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-mon fc-widget-content fc-other-month fc-future" data-date="2015-06-29">
+									<div><div class="fc-day-number">29</div><div class="fc-day-content">
+									<div style="position: relative; height: 24px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-tue fc-widget-content fc-other-month fc-future" data-date="2015-06-30">
+									<div><div class="fc-day-number">30</div><div class="fc-day-content">
+									<div style="position: relative; height: 24px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-wed fc-widget-content fc-future" data-date="2015-07-01">
+									<div><div class="fc-day-number">1</div><div class="fc-day-content"><div style="position: relative; height: 24px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-thu fc-widget-content fc-future" data-date="2015-07-02">
+									<div><div class="fc-day-number">2</div><div class="fc-day-content"><div style="position: relative; height: 24px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-fri fc-widget-content fc-future" data-date="2015-07-03">
+									<div><div class="fc-day-number">3</div><div class="fc-day-content"><div style="position: relative; height: 24px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-sat fc-widget-content fc-future fc-last" data-date="2015-07-04">
+									<div><div class="fc-day-number">4</div><div class="fc-day-content"><div style="position: relative; height: 24px;">&nbsp;</div></div></div></td></tr>
+									<tr class="fc-week"><td class="fc-day fc-sun fc-widget-content fc-future fc-first" data-date="2015-07-05">
+									<div style="min-height: 86px;"><div class="fc-day-number">5</div>
+									<div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-mon fc-widget-content fc-future" data-date="2015-07-06"><div><div class="fc-day-number">6</div>
+									<div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td><td class="fc-day fc-tue fc-widget-content fc-future" data-date="2015-07-07"><div>
+									<div class="fc-day-number">7</div><div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-wed fc-widget-content fc-future" data-date="2015-07-08"><div><div class="fc-day-number">8</div>
+									<div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-thu fc-widget-content fc-future" data-date="2015-07-09"><div><div class="fc-day-number">9</div><div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-fri fc-widget-content fc-future" data-date="2015-07-10"><div><div class="fc-day-number">10</div><div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-sat fc-widget-content fc-future fc-last" data-date="2015-07-11"><div><div class="fc-day-number">11</div><div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td></tr>
+									<tr class="fc-week"><td class="fc-day fc-sun fc-widget-content fc-future fc-first" data-date="2015-07-12"><div style="min-height: 86px;"><div class="fc-day-number">12</div><div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-mon fc-widget-content fc-future" data-date="2015-07-13"><div><div class="fc-day-number">13</div><div class="fc-day-content">
+									<div style="position: relative; height: 0px;">&nbsp;</div></div></div></td><td class="fc-day fc-tue fc-widget-content fc-future" data-date="2015-07-14"><div><div class="fc-day-number">14</div>
+									<div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td><td class="fc-day fc-wed fc-widget-content fc-future" data-date="2015-07-15"><div><div class="fc-day-number">15</div>
+									<div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td><td class="fc-day fc-thu fc-widget-content fc-future" data-date="2015-07-16"><div><div class="fc-day-number">16</div>
+									<div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td><td class="fc-day fc-fri fc-widget-content fc-future" data-date="2015-07-17"><div><div class="fc-day-number">17</div>
+									<div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td><td class="fc-day fc-sat fc-widget-content fc-future fc-last" data-date="2015-07-18"><div><div class="fc-day-number">18</div>
+									<div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td></tr>
+									<tr class="fc-week"><td class="fc-day fc-sun fc-widget-content fc-future fc-first" data-date="2015-07-19"><div style="min-height: 86px;"><div class="fc-day-number">19</div>
+									<div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-mon fc-widget-content fc-future" data-date="2015-07-20"><div><div class="fc-day-number">20</div>
+									<div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td><td class="fc-day fc-tue fc-widget-content fc-future" data-date="2015-07-21"><div>
+									<div class="fc-day-number">21</div><div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-wed fc-widget-content fc-future" data-date="2015-07-22"><div><div class="fc-day-number">22</div><div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-thu fc-widget-content fc-future" data-date="2015-07-23"><div><div class="fc-day-number">23</div><div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-fri fc-widget-content fc-future" data-date="2015-07-24"><div><div class="fc-day-number">24</div><div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-sat fc-widget-content fc-future fc-last" data-date="2015-07-25"><div><div class="fc-day-number">25</div><div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td></tr>
+									<tr class="fc-week"><td class="fc-day fc-sun fc-widget-content fc-future fc-first" data-date="2015-07-26"><div style="min-height: 86px;"><div class="fc-day-number">26</div><div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-mon fc-widget-content fc-future" data-date="2015-07-27"><div><div class="fc-day-number">27</div><div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-tue fc-widget-content fc-future" data-date="2015-07-28"><div><div class="fc-day-number">28</div><div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-wed fc-widget-content fc-future" data-date="2015-07-29"><div><div class="fc-day-number">29</div><div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-thu fc-widget-content fc-future" data-date="2015-07-30"><div><div class="fc-day-number">30</div><div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-fri fc-widget-content fc-future" data-date="2015-07-31"><div><div class="fc-day-number">31</div><div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-sat fc-widget-content fc-other-month fc-future fc-last" data-date="2015-08-01"><div><div class="fc-day-number">1</div><div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td></tr>
+									<tr class="fc-week fc-last"><td class="fc-day fc-sun fc-widget-content fc-other-month fc-future fc-first" data-date="2015-08-02">
+									<div style="min-height: 90px;"><div class="fc-day-number">2</div><div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-mon fc-widget-content fc-other-month fc-future" data-date="2015-08-03"><div><div class="fc-day-number">3</div><div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-tue fc-widget-content fc-other-month fc-future" data-date="2015-08-04"><div><div class="fc-day-number">4</div><div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-wed fc-widget-content fc-other-month fc-future" data-date="2015-08-05"><div><div class="fc-day-number">5</div><div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-thu fc-widget-content fc-other-month fc-future" data-date="2015-08-06"><div><div class="fc-day-number">6</div><div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-fri fc-widget-content fc-other-month fc-future" data-date="2015-08-07"><div><div class="fc-day-number">7</div><div class="fc-day-content"><div style="position: relative; height: 0px;">&nbsp;</div></div></div></td>
+									<td class="fc-day fc-sat fc-widget-content fc-other-month fc-future fc-last" data-date="2015-08-08"><div><div class="fc-day-number">8</div><div class="fc-day-content">
+									<div style="position: relative; height: 0px;">&nbsp;</div></div></div></td></tr></tbody></table></div></div></div>
+								</div>
+							</div>														
+														
+														</tbody>
+													</table>
+												</div>
+												
+											</div>
+											
+											<div class="tab-pane fade" id="tab-friends">
+												<ul class="widget-users row">
+													<li class="col-md-6">
+														<div class="img">
+															<img src="img/samples/scarlet.png" alt=""/>
+														</div>
+														<div class="details">
+															<div class="name">
+																<a href="#">Scarlett Johansson</a>
+															</div>
+															<div class="time">
+																<i class="fa fa-clock-o"></i> Last online: 5 minutes ago
+															</div>
+															<div class="type">
+																<span class="label label-danger">Admin</span>
+															</div>
+														</div>
+													</li>
+													<li class="col-md-6">
+														<div class="img">
+															<img src="img/samples/kunis.png" alt=""/>
+														</div>
+														<div class="details">
+															<div class="name">
+																<a href="#">Mila Kunis</a>
+															</div>
+															<div class="time online">
+																<i class="fa fa-check-circle"></i> Online
+															</div>
+															<div class="type">
+																<span class="label label-warning">Pending</span>
+															</div>
+														</div>
+													</li>
+													<li class="col-md-6">
+														<div class="img">
+															<img src="img/samples/ryan.png" alt=""/>
+														</div>
+														<div class="details">
+															<div class="name">
+																<a href="#">Ryan Gossling</a>
+															</div>
+															<div class="time online">
+																<i class="fa fa-check-circle"></i> Online
+															</div>
+														</div>
+													</li>
+													<li class="col-md-6">
+														<div class="img">
+															<img src="img/samples/robert.png" alt=""/>
+														</div>
+														<div class="details">
+															<div class="name">
+																<a href="#">Robert Downey Jr.</a>
+															</div>
+															<div class="time">
+																<i class="fa fa-clock-o"></i> Last online: Thursday
+															</div>
+														</div>
+													</li>
+													<li class="col-md-6">
+														<div class="img">
+															<img src="img/samples/emma.png" alt=""/>
+														</div>
+														<div class="details">
+															<div class="name">
+																<a href="#">Emma Watson</a>
+															</div>
+															<div class="time">
+																<i class="fa fa-clock-o"></i> Last online: 1 week ago
+															</div>
+														</div>
+													</li>
+													<li class="col-md-6">
+														<div class="img">
+															<img src="img/samples/george.png" alt=""/>
+														</div>
+														<div class="details">
+															<div class="name">
+																<a href="#">George Clooney</a>
+															</div>
+															<div class="time">
+																<i class="fa fa-clock-o"></i> Last online: 1 month ago
+															</div>
+														</div>
+													</li>
+													<li class="col-md-6">
+														<div class="img">
+															<img src="img/samples/kunis.png" alt=""/>
+														</div>
+														<div class="details">
+															<div class="name">
+																<a href="#">Mila Kunis</a>
+															</div>
+															<div class="time online">
+																<i class="fa fa-check-circle"></i> Online
+															</div>
+															<div class="type">
+																<span class="label label-warning">Pending</span>
+															</div>
+														</div>
+													</li>
+													<li class="col-md-6">
+														<div class="img">
+															<img src="img/samples/ryan.png" alt=""/>
+														</div>
+														<div class="details">
+															<div class="name">
+																<a href="#">Ryan Gossling</a>
+															</div>
+															<div class="time online">
+																<i class="fa fa-check-circle"></i> Online
+															</div>
+														</div>
+													</li>
+												</ul>
+												
+												<a href="#" class="btn btn-success pull-right">View all users</a>
+											</div>
+											
+											<div class="tab-pane fade" id="tab-chat">
+												<div class="conversation-wrapper">
+													<div class="conversation-content">
+														<div class="conversation-inner">
+														
+															<div class="conversation-item item-left clearfix">
+																<div class="conversation-user">
+																	<img src="img/samples/ryan.png" alt=""/>
+																</div>
+																<div class="conversation-body">
+																	<div class="name">
+																		Ryan Gossling
+																	</div>
+																	<div class="time hidden-xs">
+																		September 21, 2013 18:28
+																	</div>
+																	<div class="text">
+																		I don't think they tried to market it to the billionaire, spelunking, 
+																		base-jumping crowd.
+																	</div>
+																</div>
+															</div>
+															<div class="conversation-item item-right clearfix">
+																<div class="conversation-user">
+																	<img src="img/samples/kunis.png" alt=""/>
+																</div>
+																<div class="conversation-body">
+																	<div class="name">
+																		Mila Kunis
+																	</div>
+																	<div class="time hidden-xs">
+																		September 21, 2013 12:45
+																	</div>
+																	<div class="text">
+																		Normally, both your asses would be dead as fucking fried chicken, but you 
+																		happen to pull this shit while I'm in a transitional period so I don't wanna 
+																		kill you, I wanna help you.
+																	</div>
+																</div>
+															</div>
+															<div class="conversation-item item-right clearfix">
+																<div class="conversation-user">
+																	<img src="img/samples/kunis.png" alt=""/>
+																</div>
+																<div class="conversation-body">
+																	<div class="name">
+																		Mila Kunis
+																	</div>
+																	<div class="time hidden-xs">
+																		September 21, 2013 12:45
+																	</div>
+																	<div class="text">
+																		Normally, both your asses would be dead as fucking fried chicken, but you 
+																		happen to pull this shit while I'm in a transitional period so I don't wanna 
+																		kill you, I wanna help you.
+																	</div>
+																</div>
+															</div>
+															<div class="conversation-item item-left clearfix">
+																<div class="conversation-user">
+																	<img src="img/samples/ryan.png" alt=""/>
+																</div>
+																<div class="conversation-body">
+																	<div class="name">
+																		Ryan Gossling
+																	</div>
+																	<div class="time hidden-xs">
+																		September 21, 2013 18:28
+																	</div>
+																	<div class="text">
+																		I don't think they tried to market it to the billionaire, spelunking, 
+																		base-jumping crowd.
+																	</div>
+																</div>
+															</div>
+															<div class="conversation-item item-right clearfix">
+																<div class="conversation-user">
+																	<img src="img/samples/kunis.png" alt=""/>
+																</div>
+																<div class="conversation-body">
+																	<div class="name">
+																		Mila Kunis
+																	</div>
+																	<div class="time hidden-xs">
+																		September 21, 2013 12:45
+																	</div>
+																	<div class="text">
+																		Normally, both your asses would be dead as fucking fried chicken, but you 
+																		happen to pull this shit while I'm in a transitional period so I don't wanna 
+																		kill you, I wanna help you.
+																	</div>
+																</div>
+															</div>
+															
+														</div>
+													</div>
+													<div class="conversation-new-message">
+														<form>
+															<div class="form-group">
+																<textarea class="form-control" rows="2" placeholder="Enter your message..."></textarea>
+															</div>
+															
+															<div class="clearfix">
+																<button type="submit" class="btn btn-success pull-right">Send message</button>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<footer id="footer-bar">
+		<p id="footer-copyright">
+		&copy; 2015-16 <a href="http://www.adbee.sk/" target="_blank">Adbee digital</a>. Powered by SuperheroAdmin.
+		</p>
+</footer>
+	
+	<!-- global scripts -->
+	<script src="{% static 'assets/js/jquery.js'%}"></script>
+	<script src="{% static 'assets/js/bootstrap.js'%}"></script>
+	
+	<!-- this page specific scripts -->
+	<script src="{% static 'assets/js/jquery.slimscroll.min.js'%}"></script>
+	
+	<!-- theme scripts -->
+	<script src="{% static 'assets/js/scripts.js'%}"></script>
+	
+	<!-- this page specific inline scripts -->
+	<script>
+	$(document).ready(function() {
+		$('.conversation-inner').slimScroll({
+	        height: '340px'
+	    });
+	});
+	</script>
+</body>
+</html>

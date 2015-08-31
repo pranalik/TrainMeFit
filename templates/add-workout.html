@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html>
+ {% load staticfiles %}
+<head>
+    <meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Add Workout</title>
+	
+    <!-- bootstrap -->
+    <link href="{% static 'assets/css/bootstrap/bootstrap.css'%}" rel="stylesheet" />
+
+    <!-- libraries -->
+    <link href="{% static 'assets/css/libs/font-awesome.css'%}" type="text/css" rel="stylesheet" />
+
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/compiled/layout.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/compiled/elements.css'%}">
+  
+    <!-- this page specific styles -->
+    <link rel="stylesheet" href="{% static 'assets/css/libs/select2.css'%}" type="text/css" />
+
+    <!-- google font libraries -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300|Titillium+Web:200,300,400' rel='stylesheet' type='text/css'>
+    
+  
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-49262924-1', 'phoonio.com');
+	  ga('send', 'pageview');
+
+	</script>
+<style type="text/css">
+	.modal-field {
+	width:100%;
+	}
+
+	 .form-group-select2 label{
+		display: inline-block;	
+	}
+	
+</style>
+</head>
+<body>
+	<header class="navbar" id="header-navbar">
+		<div class="container">
+			<a href="#" id="logo" class="navbar-brand col-md-3 col-sm-3 col-xs-12">
+				<img style="width: 30px;margin-top: -5px;" src="{% static 'assets/img/trainmefit.png'%}" alt=""><span>TrainMeFit</span>
+			</a>
+			
+			<button class="navbar-toggle" data-target=".navbar-ex1-collapse" data-toggle="collapse" type="button">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="fa fa-bars"></span>
+			</button>
+			
+			<div class="nav-no-collapse pull-right" id="header-nav">
+				<ul class="nav navbar-nav pull-right">
+					<!-- <li class="mobile-search">
+						<a class="btn">
+							<i class="fa fa-search"></i>
+						</a>
+						
+						<div class="drowdown-search">
+							<form role="search">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Search...">
+									<i class="fa fa-search nav-search-icon"></i>
+								</div>
+							</form>
+						</div>
+						
+					</li>
+					<li class="dropdown hidden-xs">
+						<a class="btn dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-warning"></i>
+							<span class="count">8</span>
+						</a>
+						<ul class="dropdown-menu notifications-list">
+							<li class="pointer">
+								<div class="pointer-inner">
+									<div class="arrow"></div>
+									<div class="arrow-border"></div>
+								</div>
+							</li>
+							<li class="item-header">You have 6 new notifications</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-comment"></i>
+									<span class="content">New comment on ‘Awesome P...</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-plus"></i>
+									<span class="content">New user registration</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-envelope"></i>
+									<span class="content">New Message from George</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-shopping-cart"></i>
+									<span class="content">New purchase</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-eye"></i>
+									<span class="content">New order</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item-footer">
+								<a href="#">
+									View all notifications
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown hidden-xs">
+						<a class="btn dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-envelope-o"></i>
+							<span class="count">16</span>
+						</a>
+						<ul class="dropdown-menu notifications-list messages-list">
+							<li class="pointer">
+								<div class="pointer-inner">
+									<div class="arrow"></div>
+									<div class="arrow-border"></div>
+								</div>
+							</li>
+							<li class="item first-item">
+								<a href="#">
+									<img src="img/samples/messages-photo-1.png" alt=""/>
+									<span class="content">
+										<span class="content-headline">
+											George Clooney
+										</span>
+										<span class="content-text">
+											Look, just because I don't be givin' no man a foot massage don't make it 
+											right for Marsellus to throw...
+										</span>
+									</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<img src="img/samples/messages-photo-2.png" alt=""/>
+									<span class="content">
+										<span class="content-headline">
+											Emma Watson
+										</span>
+										<span class="content-text">
+											Look, just because I don't be givin' no man a foot massage don't make it 
+											right for Marsellus to throw...
+										</span>
+									</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<img src="img/samples/messages-photo-3.png" alt=""/>
+									<span class="content">
+										<span class="content-headline">
+											Robert Downey Jr.
+										</span>
+										<span class="content-text">
+											Look, just because I don't be givin' no man a foot massage don't make it 
+											right for Marsellus to throw...
+										</span>
+									</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item-footer">
+								<a href="#">
+									View all messages
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="hidden-xs">
+						<a class="btn">
+							<i class="fa fa-cog"></i>
+						</a>
+					</li> -->
+					<li class="dropdown profile-dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<img src="img/samples/profile-photo.png" alt=""/>
+							<span class="hidden-xs">{{ request.session.login_user }}</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="user-profile.html"><i class="fa fa-user"></i>Profile</a></li>
+							<li><a href="#"><i class="fa fa-cog"></i>Settings</a></li>
+							<li><a href="#"><i class="fa fa-envelope-o"></i>Messages</a></li>
+							<li><a href="/sign-out-admin/"><i class="fa fa-power-off"></i>Logout</a></li>
+						</ul>
+					</li>
+					<li class="hidden-xxs">
+						<a href="/sign-out-admin/" class="btn">
+							<i class="fa fa-power-off"></i>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	
+<div class="container">
+	<div class="row">
+		<div class="col-md-2" id="nav-col">
+			<section id="col-left">
+				<div class="collapse navbar-collapse navbar-ex1-collapse" id="sidebar-nav">	
+					<ul class="nav nav-pills nav-stacked">
+						<li>
+							<a href="/dashboard/">
+								<i class="fa fa-dashboard"></i>
+								<span>Dashboard</span>
+							</a>
+						</li>
+						<li>
+							<a href="/user-section/">
+								<i class="fa fa-users"></i>
+								<span>Customers</span>
+							</a>								
+						</li>
+						<li>
+							<a href="/program-list/">
+								<i class="fa fa-calendar"></i>
+								<span>Programs</span>
+							</a>
+						</li>
+						<li>
+							<a href="/workout/">
+								<i class="fa fa-star-o"></i>
+								<span>Workouts</span>
+							</a>
+						</li>
+						<li>
+							<a href="/exercise-list/" >
+								<i class="fa fa-rocket"></i>
+								<span>Exercises</span>
+							</a>
+						</li>
+						<!-- <li>
+							<a href="#">
+								<i class="fa fa-gbp"></i>
+								<span>Payments</span>
+							</a> 
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa fa-gears"></i>
+								<span>Services</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa fa-table"></i>
+								<span>Master Tables</span>
+							</a>
+						</li> -->
+						</ul>
+				</div>
+			</section>
+		</div>
+			
+			<div class="col-md-10" id="content-wrapper">
+				<div class="row">
+					<form role="form" name="workoutForm" action="/save-workout/" method="POST" onsubmit="return validateAndUpdateExerciseList()">
+					<input type="hidden" value="{{ exercise_id }}" name="exercise_id" ></input>
+						<div class="col-lg-12">
+							<div class="clearfix">
+								<h1 class="pull-left">Workouts</h1>	
+							</div>
+								<div class="main-box clearfix">
+								
+								
+								   <!-- Hidden field to store the exercise added in this workout -->
+								 <input type="hidden" name="workout_exercise_list" id="workout_exercise_list"></input>
+								 <input type="hidden" name="totalData" id="totalData" ></input>
+								 
+								   <div class="row">
+										<div class="clearfix">
+											<h2 class="pull-left">Add Workout</h2>
+												<div class="filter-block pull-right">
+													<a href="/workout/" class="btn btn-primary pull-right" style="width: 175px;">
+														<i class="fa  fa-lg"></i>Cancel
+													</a>	
+													<input type="submit" id="wk_save" class="btn btn-primary pull-right" style="width: 175px;" value="Save">
+														<i class="fa  fa-lg"></i>
+													</input>
+												</div>
+										</div>
+									</div>
+										
+									<div class="row">	
+									  <div class="col-lg-6"> 
+										  <div class="form-group">			    
+											<label >Name</label>
+												<input type="text" class="form-control" autocomplete="off" name="workout_name" id="workout_name" placeholder="" required="required" style="width: 100%;"></input>
+											</div>
+										</div>
+
+									<div class="col-lg-3">
+										   <div class="form-group">
+												<label >No of Exercises</label>
+												<input type="number" readonly class="form-control" autocomplete="off" min="0" max="12" step="1" id="no_exercises"  
+												name="number_of_exercises"  placeholder="" ></input>
+											</div>
+										</div>	
+		
+										<div class="col-lg-3">
+											<div class="form-group">
+												<label >Time</label>
+												<input type="text" readonly class="form-control" autocomplete="off" id="workout_total_time" pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" placeholder="HH:MM:SS" name="workout_time" value ="{{ value|time:"MM:SS" }}" ></input>
+											</div>									
+										</div>	
+									</div>	
+									<div class="row">
+							         <!-- --------------------Hidden drop down------------------------- -->
+										
+								<div class="col-lg-2">	
+												 <select style="width:100%; display:none " autocomplete="off" name="exercise_time" id="exercise_time_id_dropdwn" >											    														    						
+														</select>										
+										</div> 
+									</div> 
+								
+									<div class="form-group form-group-select2">
+			                         <div class="row">																			
+												<div class="col-lg-3">
+													<label>Workout Type</label>
+													<select style="width:100%" required name="wk_type" id="WKT_TYPE">
+														<option value='' disabled selected>---Select Workout Type---</option>
+														<option value="Normal">Normal</option>
+														<option value="Sample">Sample</option>
+														<option value="Sample">Challenge</option>		
+													</select>	
+												</div>
+												
+												<div class="col-lg-3">													
+													  <label>Workout Intensity</label>
+											   		<select style="width:100%" required name="wk_intensity" id="WKT_INTENSITY">
+															<option value='' disabled selected>---Select Workout Intensity---</option>
+															<option value="Easy">Easy</option>
+															<option value="Medium">Medium</option>	
+															<option value="Hard">Hard</option>	
+														</select>
+												</div>			                         
+											</div>
+										    </div>
+										    
+										    <div class="form-group form-group-select2">
+			                         <div class="row">
+			                         
+												 <div class="col-lg-3">
+												 <div class="form-group">
+													  <label>Exercise Objective</label><label id="lbl_exercise_category" style="color:white" >&nbsp *Select Objective</label>
+														<select style="width:100%" name="exercise_category" id="exercise_category">
+														<option value='' disabled selected>---Select Objective---</option>
+															{% for category in category_list %}	
+																	<option value="{{ category.category_id }}"> {{ category.category_name }}</option>
+															{% endfor %}	
+														</select>
+														</div>
+													</div>
+
+			                            
+			                             <div class="col-lg-3">
+														<label>Body Part</label><label id="lbl_bodypart" style="color:white">&nbsp *Select Body Part</label>
+														<select style="width:100%" name="exercise_bodypart" id="bodypart">
+														<option value='' disabled selected>---Select Body Part---</option>
+															{% for bodypart in bodypart_list %}
+																<option value="{{ bodypart.bodypart_id}}">{{ bodypart.bodypart_name }}</option>
+															{% endfor %}
+														</select>
+													</div>	
+																                         
+			                         
+			                         		<div class="col-lg-3">
+														<label> Gender</label><label id="lbl_exercise_gender" style="color:white">&nbsp *Select Gender</label>
+														<select style="width:100%" name="exercise_gender" id="exercise_gender">
+															<option value='' disabled selected>---Select Gender---</option>
+															<option value="Male">Male</option>
+															<option value="Female">Female</option>		
+														</select>	
+													</div>
+													
+											<div class="col-lg-3">
+													  <label>Exercise Intensity</label><label id="lbl_EXE_INTENSITY" style="color:white">&nbsp *Select Intensity</label>
+											   		<select style="width:100%" name="intensity" id="EXE_INTENSITY">
+															<option value='' disabled selected>---Select Exercise Intensity---</option>
+															<option value="Easy">Easy</option>
+															<option value="Medium">Medium</option>	
+															<option value="Hard">Hard</option>	
+														</select>
+												</div>													  
+										</div>	
+									</div>	
+												
+										<div class="form-group form-group-select2">
+			                         <div class="row">
+												<div class="col-lg-3">
+													  <label>Exercise</label><label id="lbl_exercise" style="color:white">&nbsp *Select Exercise </label>
+														<select style="width:100%" id="exercise"  name="exercises">
+														 <option value='' disabled selected>---Select Exercise---</option>
+														</select>
+													</div>
+			                            
+			                             <div class="col-lg-3">
+													  <label>Exercise Time</label>
+													<input type="text" readonly class="form-control" id= "exercise_time_vl" autocomplete="off" pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}:[0-5]{1}[0-9]{1}"  placeholder="HH:MM:SS" name="" value ="{{ value|time:"HH:MM:SS" }}" ></input>	
+													</div>
+												</div>
+											</div>						    
+										    
+										 <div class="form-group form-group-select2">
+			                         <div class="row">
+			                             <div class="col-lg-3">
+													  <label>Total No of Reps</label><label id="lbl_reps" style="color:white">&nbsp *Enter Total No of Reps </label>
+													<input type="number" class="form-control" id="reps" autocomplete="off" step="1" name="reps" placeholder="" ></input>
+													</div>
+			                            
+			                            <div class="col-lg-3">
+													  <label>Total No of Sets</label><label id="lbl_sets" style="color:white">&nbsp *Enter Total No of Sets </label>
+													<input type="number" class="form-control" autocomplete="off" id="sets" step="1" name="" placeholder="" ></input>	
+													</div>
+													
+													<div class="col-lg-3">
+													  <label>Time between Sets</label><label id="lbl_setTime" style="color:white">&nbsp *Enter Time </label>
+													<input type="text" class="form-control" id="setTime" autocomplete="off" pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}:[0-5]{1}[0-9]{1}"  placeholder="HH:MM:SS" name="" value ="{{ value|time:"HH:MM:SS" }}" ></input>	
+													</div>
+													
+													<div class="col-lg-2">
+													  <label>Rest Time</label><label id="lbl_restTime" style="color:white">&nbsp *Enter Time </label>
+													<input type="text" class="form-control" id="restTime" autocomplete="off" pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" placeholder="HH:MM:SS" name="" value ="{{ value|time:"HH:MM:SS" }}" ></input>	
+													</div>
+													
+													<div class="col-lg-1" >
+														   <label>&nbsp;</label><br>
+														   <div class="button_add">
+															<div id="btnAddExercise" class="btn btn-success">Add</div>
+															</div>
+													</div>
+													</div>
+										    </div>   
+										    
+								   		
+										<div class="table-responsive">
+										<table class="table" id="exercise_table">
+											<thead>
+												<tr>
+													<th style="display:none"><span>exercise_id </span></th>
+													<th><span>Exercise Name</span></th>
+													<th ><span>Gender</span></th>
+													<th ><span>Bodypart</span></th>
+													<th ><span>Total Reps</span></th>
+													<th ><span>Total Sets</span></th>
+													<th ><span>Time Between Sets </span></th>
+													<th ><span>Rest Time</span></th>
+													<th ><span>Total Exercise Time</span></th>
+													<th ><span>Delete</span></th>
+																	
+												</tr>
+										</thead>
+									</table>
+								</div>										
+							</div>		
+						</div>
+				</form>	
+			</div>
+		</div>
+</div>
+</div>
+
+			
+		
+<footer id="footer-bar">
+		<p id="footer-copyright">
+		&copy; 2015-16 <a href="http://www.trainmefit.co.uk/" target="_blank">TrainMeFit</a>
+		</p>
+</footer>
+	
+	<!-- global scripts -->
+	<script src="{% static 'assets/js/jquery.js'%}"></script>
+	<script src="{% static 'assets/js/bootstrap.js'%}"></script>
+	
+	<!-- this page specific scripts -->
+	<script src="{% static 'assets/js/bootstrap-wizard.js'%}"></script>
+	<script src="{% static 'assets/js/jquery.maskedinput.min.js'%}"></script>
+	<script src="{% static 'assets/js/bootstrap-datepicker.js'%}"></script>
+	<script src="{% static 'assets/js/moment.min.js'%}"></script>
+	<script src="{% static 'assets/js/daterangepicker.js'%}"></script>
+	<script src="{% static 'assets/js/bootstrap-timepicker.min.js'%}"></script>
+	<script src="{% static 'assets/js/select2.min.js'%}"></script>
+	<script src="{% static 'assets/js/hogan.js'%}"></script>
+	<script src="{% static 'assets/js/typeahead.min.js'%}"></script>
+	<script src="{% static 'assets/js/jquery.pwstrength.js'%}"></script>
+	<script src="{% static 'assets/js/ckeditor/ckeditor.js'%}"></script>
+	<script src="{% static 'assets/js/jquery.tabletojson.min.js'%}"></script>
+	
+	<!-- theme scripts -->
+	<script src="{% static 'assets/js/scripts.js'%}"></script>
+	
+		<script>
+		var rowCount;
+		var workout_time_vl='00:00:00';
+		$(function($) {
+				//tooltip init
+				
+				$('select').val("");
+		
+		$('#exercise_time').val($('#exercise option:selected').val());
+		
+		$('#exampleTooltip').tooltip();
+		//nice select boxes
+		$('#bodypart').select2();
+		$('#exercise_gender').select2();
+		$('#exercise_category').select2();
+		$('#exercise').select2();
+		$('#WKT_TYPE').select2();
+		$('#WKT_INTENSITY').select2();
+		$('#EXE_INTENSITY').select2();
+		
+		$('#sel2Multi').select2({
+			placeholder: 'Select a Country',
+			allowClear: true
+		});
+		
+		
+//$('#exercise').click(function(){
+$('#exercise').change(function(){	
+	$('#exercise_time_id_dropdwn').val($('#exercise option:selected').val());
+	$('#exercise_time_vl').val($("#exercise_time_id_dropdwn option:selected").text().trim());	
+});
+	
+
+	
+		//masked inputs
+		$("#maskedDate").mask("99/99/9999");
+		$("#maskedPhone").mask("(999) 999-9999");
+		$("#maskedPhoneExt").mask("(999) 999-9999? x99999");
+		$("#maskedTax").mask("99-9999999");
+		$("#maskedSsn").mask("999-99-9999");
+		
+		$("#maskedProductKey").mask("a*-999-a999",{placeholder:" ",completed:function(){alert("You typed the following: "+this.val());}});
+		
+		$.mask.definitions['~']='[+-]';
+		$("#maskedEye").mask("~9.99 ~9.99 999");
+	
+		//datepicker
+		$('#datepickerDate').datepicker({
+		  format: 'mm-dd-yyyy'
+		});
+
+		$('#datepickerDateComponent').datepicker();
+		
+		//daterange picker
+		$('#datepickerDateRange').daterangepicker();
+		
+		//timepicker
+		$('#timepicker').timepicker({
+			minuteStep: 5,
+			showSeconds: true,
+			showMeridian: false,
+			disableFocus: false,
+			showWidget: true
+		}).focus(function() {
+			$(this).next().trigger('click');
+		});
+		
+		//autocomplete simple
+		$('#exampleAutocompleteSimple').typeahead({                              
+			prefetch: '/data/countries.json',
+			limit: 10
+		});
+		
+		//autocomplete with templating
+		$('#exampleAutocomplete').typeahead({                              
+			name: 'twitter-oss',                                                        
+			prefetch: '/data/repos.json',                                             
+			template: [                                                              
+				'<p class="repo-language">{{language}}</p>',                              
+				'<p class="repo-name">{{name}}</p>',                                      
+				'<p class="repo-description">{{description}}</p>'                         
+			].join(''),                                                                 
+			engine: Hogan                                                               
+		});
+		
+		//password strength meter
+		$('#examplePwdMeter').pwstrength({
+			label: '.pwdstrength-label'
+		});
+		
+	});
+
+	var exercise_id_array =[];
+	$(document).ready(function() {
+
+//------------------- Key Press Event----------------------------------
+
+$('#reps').keypress(function(e) {
+    var a = [];
+    var k = e.which;
+    for (i = 48; i < 58; i++){
+        a.push(i);}
+        a.push(8);
+		  a.push(0);
+		  a.push(13);
+    
+    if (!(a.indexOf(k)>=0)){   
+        $('#lbl_reps').text("*Invalid Key.");     
+        $('#lbl_reps').css("color", "red");	
+        $('#lbl_reps').css("padding-left", "10px");	
+        e.preventDefault();
+        }else{ 
+         $('#lbl_reps').text("*Enter Reps.");              
+			$('#lbl_reps').css("color", "white");        
+        }
+        
+});
+
+$('#sets').keypress(function(e) {
+    var a = [];
+    var k = e.which;
+    for (i = 48; i < 58; i++){
+        a.push(i);}
+        a.push(8);
+		  a.push(0);
+		  a.push(13);
+    
+    if (!(a.indexOf(k)>=0)){   
+        $('#lbl_sets').text("*Invalid Key.");     
+        $('#lbl_sets').css("color", "red");	
+        $('#lbl_sets').css("padding-left", "10px");	
+        e.preventDefault();
+        }else{ 
+         $('#lbl_sets').css("padding-left", "10px");	
+         $('#lbl_sets').text("*Enter Sets.");              
+			$('#lbl_sets').css("color", "white");        
+        }
+        
+});
+
+//------------------- Key Press Event End--------------------------------
+	
+	    $("#exercise_gender").change(function(event){	    
+      	get_exercise();
+      	//$('#exercise').html(''); 
+      	//alert('test');
+		 });
+		 
+		  $("#bodypart").change(function(event){
+      	get_exercise();						
+		 });
+		 
+		 $("#EXE_INTENSITY").change(function(event){
+      	get_exercise();						
+		 });
+		 
+		 $("#exercise_category").change(function(event){
+      	get_exercise();						
+		 });
+	
+	
+     function get_exercise(){
+     // 	alert ($('#exercise_gender selected').val());						
+      	console.log('I am in event');
+		      $.ajax({
+				   type	: 'GET',
+			      url	: '/get-exercises-by-bodypart/',
+			      data  : {'body_part_id':$('#bodypart').val(),'exercise_category':$('#exercise_category').val(),'exercise_gender':$('#exercise_gender').val(),'intensity':$('#EXE_INTENSITY').val()},
+			      success: function(response){
+				      console.log(response);
+				      $('#exercise').html('');
+				      $('#exercise_time_id_dropdwn').html('');
+				      
+				      $('#exercise').append('<option value=""  disabled selected>---Select Exercise---</option>');
+					   $('#exercise_time_id_dropdwn').append('<option value=""  disabled selected>---Select Time--- </option>');
+				      
+				      $.each(response.exercise_list, function(index, item) {
+				      		$('#exercise').append('<option value="' +item.exercise_id + '">'+item.exercise_name+'</option>');
+								$('#exercise_time_id_dropdwn').append('<option value="' +item.exercise_id + '">'+item.exercise_time+'</option>');
+								console.log(index +' -- ' +item.exercise_id + '--' + item.exercise_name);
+						});			
+					},
+					error: function(response){
+						console.log("Error"+response);
+					}
+					
+				});
+						
+		 }
+
+/*---------------------------------------FUNCTION FOR ADDING EXERCISE IN WORKOUT-------------------------------------------*/		 
+$("#btnAddExercise").click(function()  {
+		
+		      if($.inArray( $('#exercise').val(), exercise_id_array )>=0){
+ 						alert('Exercise is already added');
+ 						return false;
+				}
+		 
+		 /*---------------------------------checking required values-----------------------------------------*/
+		 
+					if($('#exercise_category option:selected').val()===""){ 		 
+	        			 $('#lbl_exercise_category').css("color", "red");	
+					}else{
+						$('#lbl_exercise_category').css("color", "white"); 
+    				}
+
+			
+					if($('#bodypart option:selected').val()===""){ 		 
+	        			 $('#lbl_bodypart').css("color", "red");	
+					}else{
+						$('#lbl_bodypart').css("color", "white"); 
+    				}
+					
+					if($('#exercise_gender option:selected').val()===""){ 		 
+	        			 $('#lbl_exercise_gender').css("color", "red");	
+					}else{
+						$('#lbl_exercise_gender').css("color", "white"); 
+    				}
+
+
+					if($('#EXE_INTENSITY option:selected').val()===""){ 		 
+	        			 $('#lbl_EXE_INTENSITY').css("color", "red");	
+					}else{
+						$('#lbl_EXE_INTENSITY').css("color", "white"); 
+    				}
+    				
+    				
+    				if($('#exercise option:selected').val()===""){ 		 
+	        			 $('#lbl_exercise').css("color", "red");	
+					}else{
+						$('#lbl_exercise').css("color", "white"); 
+    				}
+    					
+	            
+	            if($('#reps').val()===""){ 	 
+	               $('#lbl_reps').text("*Enter Reps");	      
+	               $('#lbl_reps').css("padding-left", "10px");              		 
+	        			 $('#lbl_reps').css("color", "red");	
+					}else{
+						$('#lbl_reps').css("color", "white"); 
+    				}
+	            
+	            
+	            if($('#sets').val()=== ""){ 		 
+                  $('#lbl_sets').text("*Enter Sets.");	      
+	               $('#lbl_sets').css("padding-left", "10px");
+	        	      $('#lbl_sets').css("color", "red");	
+					}else{
+						$('#lbl_sets').css("color", "white"); 
+    				}	                      
+	            
+	            var sets = $('#sets');
+	            if (sets.val()== "00" || sets.val()=="0") {
+	                alert("Sets should not be zero!");
+	                return false;
+	            }
+	            
+	            
+	            
+	           /* var reps = $("#reps");
+	            if (reps.val()== "00" || reps.val()== "0" ) {
+	               alert("Repeatation should not be zero!");
+	               return false;
+	            }*/
+	              	            
+	            
+//---------------SOME TIME THERE ARE NO SET--------------------------	            
+	          /* var setTime = $('#setTime');
+	            if (setTime.val()== "0" || setTime.val()== "00:00:00") {
+	                alert("Time should not be zero!");
+	                return false;
+	            }*/
+	            
+	           /* var setTime = $('#restTime');
+	            if (setTime.val()== "00" || setTime.val()== "00:00:00") {
+	                alert("Please select valid Rest Time!");
+	                return false;
+	            }*/
+	            
+	           if($('#restTime ').val()===""){ 
+	                   $('#lbl_restTime').text("*Enter Time.");     
+        					 $('#lbl_restTime').css("color", "red");	
+                      $('#lbl_restTime').css("padding-left", "10px");
+					}else{
+						$('#lbl_restTime').css("color", "white"); 
+    				} 
+					
+					if($('#setTime').val()===""){ 	
+	                   $('#lbl_setTime').text("*Enter Time.");     
+        					 $('#lbl_setTime').css("color", "red");	
+                      $('#lbl_setTime').css("padding-left", "10px");
+					}else{
+						$('#lbl_setTime').css("color", "white"); 
+    				} 
+	            
+           		if($('#exercise_category option:selected').val()==="" || $('#bodypart option:selected').val()===""       || 
+           		   $('#exercise_gender option:selected').val()===""   || $('#EXE_INTENSITY option:selected').val()===""  ||
+           		   $('#exercise option:selected').val()===""			  || $('#reps ').val()===""	                            ||
+           		   $('#sets').val()=== ""										|| $('#setTime ').val()===""									 ||
+           		   $('#restTime').val()===""	)
+           		     		
+           		{ 
+		           return false;   
+    	        }
+/*------------------------------------------------------------------------------------------------------------------------------*/	            
+				  var reps= $('#reps').val();
+				  if (reps >=100){
+							alert ("Please add less than 100");
+							return false;				  
+				  }        
+	          
+				  var sets= $('#sets').val();
+				  if (sets >=100){
+							alert ("Please add less than 100");
+							return false;				  
+				  } 	
+				  
+				  if (!($('#setTime').val().match("([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}:[0-5]{1}[0-9]{1}"))) {
+                 alert('Set Time is Not in format.');
+                return false;
+            }
+        
+             if (!($('#restTime').val().match("([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}:[0-5]{1}[0-9]{1}"))) {
+                alert('Rest Time is Not in format.');
+                return false;
+            }	          
+	            
+	/*----------------------------------------TIME CALCULATION--------------------------------------------------------*/
+	
+	 		var clean_ex_time=$("#exercise_time_vl").val().split(":");
+			var clean_setbetween_time=$("#setTime").val().split(":");
+			var total_sets= $("#sets").val();
+			
+			var hr=(parseInt(clean_ex_time[0])*total_sets)+(parseInt(clean_setbetween_time[0])*(total_sets-1));
+			var mint=(parseInt(clean_ex_time[1])*total_sets)+(parseInt(clean_setbetween_time[1])*(total_sets-1));
+			var sec=(parseInt(clean_ex_time[2])*total_sets)+(parseInt(clean_setbetween_time[2])*(total_sets-1));
+			
+			var sec_remainder=0;
+			var sec_result=0;
+			var mint_remainder=0;
+			var mint_result=0;
+			
+			if(sec>60){
+			sec_remainder=sec%60;
+			sec_result=(sec-sec_remainder)/60;	
+			sec=sec_remainder;	
+			mint=mint+sec_result;	
+			}
+			
+			if(mint>60){
+			mint_remainder=mint%60;
+			mint_result=(mint-mint_remainder)/60;
+			mint=mint_remainder;
+			hr=hr+mint_result;			
+			}	
+			
+			hr=hr.toString();
+			mint=mint.toString();
+			sec=sec.toString();
+			
+			if(hr.length<2)
+			hr='0'+hr;			
+			
+			if(mint.length<2)
+			mint='0'+mint;
+			
+			if(sec.length<2)
+			sec='0'+sec;			
+			
+			var final_time=hr+":"+mint+":"+sec;		
+				
+				   var time_validation=add_time(final_time,workout_time_vl);
+                  var check_time=time_validation.split(":");								
+                  if((parseInt(check_time[0])>0)||(parseInt(check_time[1])>45)){
+                    alert('Workout Time can not be greater then 00:45:00 mint');
+				        return false;
+                  }
+				
+				exercise_id_array.push($('#exercise').val());
+				$("#exercise_table").append(
+					"<tr>"+
+					'<td style="display:none">'+$("#exercise option:selected").val()+ "</td>"+
+					'<td class="text-left">'+$("#exercise option:selected").text()+ "</td>"+
+					'<td class="text-left">'+ $('#exercise_gender').val()+"</td>"+
+					'<td class="text-left">'+ $('#bodypart option:selected').text()+"</td>"+
+					'<td class="text-left">'+ $('#reps').val()+"</td>"+
+					'<td class="text-left">'+ $('#sets').val()+"</td>"+
+					'<td class="text-left">'+ $('#setTime').val()+"</td>"+
+					'<td class="text-left">'+ $('#restTime').val()+"</td>"+
+					'<td class="text-left">'+ final_time +"</td>"+
+					'<td> <a id="b1" class="delete table-link danger deleterow" style="cursor: pointer;" ><span class="fa-stack"><i class="fa fa-square fa-stack-2x"></i>' +
+							'<i class="fa fa-trash-o fa-stack-1x fa-inverse" onclick="myFunction($(this))"></i> </span></a>'+ '</td>'+'</tr>'
+
+				);
+				$("#no_exercises").val($('#exercise_table tr').length-1);
+	//			alert(final_time+'    '+workout_time_vl);
+				workout_time_vl=add_time(final_time,workout_time_vl);				
+				$("#workout_total_time").val(workout_time_vl);			
+			});
+	});
+
+    function validateAndUpdateExerciseList(){
+			
+			 var table = $('#exercise_table').tableToJSON();
+			 var tot_data= (JSON.stringify(table));  
+			 console.log(tot_data);
+			 
+			 $('#totalData').val(tot_data);
+			 
+			  rowCount = $('#exercise_table tr').length-1;
+			 if(rowCount<=0){
+			  alert('Please atleast add 1 Exercise !');
+					return false;	 
+			 } 
+			 
+			 	if($.trim($('#workout_name').val()) == ''){
+			      alert('Workout name can not be blank !');
+			      return false;
+			   }	
+			   
+			 if($.isNumeric( $('#workout_name').val() )){
+				alert('Workout name can not be only number!');
+      		return false;
+		}	
+			
+			 
+    } 
+ 
+ //--------------------------Java Script Function-------------------------   
+    
+    function add_time(first_time,second_time){
+  			
+    		var clean_time1=first_time.split(":");
+			var clean_time2=second_time.split(":");
+	    	var hr=parseInt(clean_time1[0])+parseInt(clean_time2[0]);
+			var mint=parseInt(clean_time1[1])+parseInt(clean_time2[1]);
+			var sec=parseInt(clean_time1[2])+parseInt(clean_time2[2]);
+			
+			console.log(clean_time1)	
+			console.log(clean_time2)	
+			console.log(hr)	
+			console.log(mint)	
+			console.log(sec)	
+	
+			var sec_remainder=0;
+			var sec_result=0;
+			var mint_remainder=0;
+			var mint_result=0;
+			
+			if(sec>60){
+			sec_remainder=sec%60;
+			sec_result=(sec-sec_remainder)/60;	
+			sec=sec_remainder;	
+			mint=mint+sec_result;	
+			}
+			
+			if(mint>60){
+			mint_remainder=mint%60;
+			mint_result=(mint-mint_remainder)/60;
+			mint=mint_remainder;
+			hr=hr+mint_result;			
+			}	
+			
+			hr=hr.toString();
+			mint=mint.toString();
+			sec=sec.toString();
+			
+			if(hr.length<2)
+			hr='0'+hr;			
+			
+			if(mint.length<2)
+			mint='0'+mint;
+			
+			if(sec.length<2)
+			sec='0'+sec;			
+			
+		console.log(hr)	
+		console.log(mint)	
+		console.log(sec)			
+			
+			var final_time=hr+":"+mint+":"+sec;	
+			
+			console.log(final_time);
+			return final_time;			
+			}
+			
+	function substract_time(first_time,second_time){
+  			
+    		var clean_time1=first_time.split(":");
+			var clean_time2=second_time.split(":");
+	    	var hr=parseInt(clean_time1[0])-parseInt(clean_time2[0]);
+			var mint=parseInt(clean_time1[1])-parseInt(clean_time2[1]);
+			var sec=parseInt(clean_time1[2])-parseInt(clean_time2[2]);
+			
+			console.log(clean_time1);	
+			console.log(clean_time2);	
+			console.log(hr);	
+			console.log(mint);	
+			console.log(sec);	
+	
+			var sec_remainder=0;
+			var sec_result=0;
+			var mint_remainder=0;
+			var mint_result=0;
+			
+			
+			if(mint<0){
+			hr=hr-1;
+			mint=60+mint;				
+			}				
+			
+		if(sec<0){
+			mint=mint-1;
+			sec=60+sec;	
+			}			
+			
+			if(sec>60){
+			sec_remainder=sec%60;
+			sec_result=(sec-sec_remainder)/60;	
+			sec=sec_remainder;	
+			mint=mint+sec_result;	
+			}
+			
+			if(mint>60){
+			mint_remainder=mint%60;
+			mint_result=(mint-mint_remainder)/60;
+			mint=mint_remainder;
+			hr=hr+mint_result;			
+			}		
+				
+			
+			
+			hr=hr.toString();
+			mint=mint.toString();
+			sec=sec.toString();
+			
+			if(hr.length<2)
+			hr='0'+hr;			
+			
+			if(mint.length<2)
+			mint='0'+mint;
+			
+			if(sec.length<2)
+			sec='0'+sec;			
+			
+		console.log(hr)	
+		console.log(mint)	
+		console.log(sec)			
+			
+			var final_time=hr+":"+mint+":"+sec;	
+			
+			console.log(final_time);
+			return final_time;			
+			}
+    
+    	function myFunction(row) {    	    	
+    		  	workout_time_vl=substract_time(workout_time_vl,row.closest('tr').children('td:eq(8)').text());    			
+    			document.getElementById("workout_total_time").value=workout_time_vl;
+				exercise_id_array.splice($.inArray(row.closest('tr').children('td:first').text(),exercise_id_array) ,1 );			  
+			   row.closest('tr').remove();
+			  $("#no_exercises").val($('#exercise_table tr').length-1); 
+			  // document.getElementById("no_exercises").value=$('#exercise_table tr').length-1;
+    }
+</script>
+	
+</body>
+</html>

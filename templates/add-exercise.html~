@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+ {% load staticfiles %}
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Add Exercise</title>
+	
+	<!-- bootstrap -->
+	<link href="{% static 'assets/css/bootstrap/bootstrap.css'%}" rel="stylesheet" />
+
+	<!-- libraries -->
+	<link href="{% static 'assets/css/libs/font-awesome.css'%}" type="text/css" rel="stylesheet" />
+
+	<!-- global styles -->
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/compiled/layout.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/compiled/elements.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/libs/dropzone.css'%}">
+
+	<!-- this page specific styles -->
+	<link rel="stylesheet" href="{% static 'assets/css/libs/datepicker.css'%}" type="text/css" />
+	<link rel="stylesheet" href="{% static 'assets/css/libs/daterangepicker.css'%}" type="text/css" />
+	<link rel="stylesheet" href="{% static 'assets/css/libs/bootstrap-timepicker.css'%}" type="text/css" />
+	<link rel="stylesheet" href="{% static 'assets/css/libs/select2.css'%}" type="text/css" />
+
+	<!-- google font libraries -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300|Titillium+Web:200,300,400' rel='stylesheet' type='text/css'>
+	
+	
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-49262924-1', 'phoonio.com');
+	  ga('send', 'pageview');
+
+	</script>
+	
+	<style type="text/css">
+	table{
+   
+    table-layout: fixed;
+    
+	}
+
+	th, td {
+
+    overflow: hidden;
+   word-wrap: break-word;
+	}
+	</style>
+</head>
+<body>
+	<header class="navbar" id="header-navbar">
+		<div class="container">
+			<a href="#" id="logo" class="navbar-brand col-md-3 col-sm-3 col-xs-12">
+				<img style="width: 30px;margin-top: -5px;" src="{% static 'assets/img/trainmefit.png'%}" alt=""><span>TrainMeFit</span>
+			</a>
+			
+			<button class="navbar-toggle" data-target=".navbar-ex1-collapse" data-toggle="collapse" type="button">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="fa fa-bars"></span>
+			</button>
+			
+			<div class="nav-no-collapse pull-right" id="header-nav">
+				<ul class="nav navbar-nav pull-right">
+					<!-- <li class="mobile-search">
+						<a class="btn">
+							<i class="fa fa-search"></i>
+						</a>
+						
+						<div class="drowdown-search">
+							<form role="search">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Search...">
+									<i class="fa fa-search nav-search-icon"></i>
+								</div>
+							</form>
+						</div>
+						
+					</li>
+					<li class="dropdown hidden-xs">
+						<a class="btn dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-warning"></i>
+							<span class="count">8</span>
+						</a>
+						<ul class="dropdown-menu notifications-list">
+							<li class="pointer">
+								<div class="pointer-inner">
+									<div class="arrow"></div>
+									<div class="arrow-border"></div>
+								</div>
+							</li>
+							<li class="item-header">You have 6 new notifications</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-comment"></i>
+									<span class="content">New comment on ‘Awesome P...</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-plus"></i>
+									<span class="content">New user registration</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-envelope"></i>
+									<span class="content">New Message from George</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-shopping-cart"></i>
+									<span class="content">New purchase</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-eye"></i>
+									<span class="content">New order</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item-footer">
+								<a href="#">
+									View all notifications
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown hidden-xs">
+						<a class="btn dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-envelope-o"></i>
+							<span class="count">16</span>
+						</a>
+						<ul class="dropdown-menu notifications-list messages-list">
+							<li class="pointer">
+								<div class="pointer-inner">
+									<div class="arrow"></div>
+									<div class="arrow-border"></div>
+								</div>
+							</li>
+							<li class="item first-item">
+								<a href="#">
+									<img src="img/samples/messages-photo-1.png" alt=""/>
+									<span class="content">
+										<span class="content-headline">
+											George Clooney
+										</span>
+										<span class="content-text">
+											Look, just because I don't be givin' no man a foot massage don't make it 
+											right for Marsellus to throw...
+										</span>
+									</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<img src="img/samples/messages-photo-2.png" alt=""/>
+									<span class="content">
+										<span class="content-headline">
+											Emma Watson
+										</span>
+										<span class="content-text">
+											Look, just because I don't be givin' no man a foot massage don't make it 
+											right for Marsellus to throw...
+										</span>
+									</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<img src="img/samples/messages-photo-3.png" alt=""/>
+									<span class="content">
+										<span class="content-headline">
+											Robert Downey Jr.
+										</span>
+										<span class="content-text">
+											Look, just because I don't be givin' no man a foot massage don't make it 
+											right for Marsellus to throw...
+										</span>
+									</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item-footer">
+								<a href="#">
+									View all messages
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="hidden-xs">
+						<a class="btn">
+							<i class="fa fa-cog"></i>
+						</a>
+					</li> -->
+					<li class="dropdown profile-dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<img src="img/samples/profile-photo.png" alt=""/>
+							<span class="hidden-xs">Scarlett Johansson</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="user-profile.html"><i class="fa fa-user"></i>Profile</a></li>
+							<li><a href="#"><i class="fa fa-cog"></i>Settings</a></li>
+							<li><a href="#"><i class="fa fa-envelope-o"></i>Messages</a></li>
+							<li><a href="index.html"><i class="fa fa-power-off"></i>Logout</a></li>
+						</ul>
+					</li>
+					<li class="hidden-xxs">
+						<a href="index.html" class="btn">
+							<i class="fa fa-power-off"></i>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<div class="container">
+		<div class="row">
+				<div class="col-md-2" id="nav-col">
+				<section id="col-left">
+					<div class="collapse navbar-collapse navbar-ex1-collapse" id="sidebar-nav">	
+										<ul class="nav nav-pills nav-stacked">
+											<li>
+												<a href="/dashboard/">
+													<i class="fa fa-dashboard"></i>
+													<span>Dashboard</span>
+												</a>
+											</li>
+											<li>
+												<a href="/user-section/">
+													<i class="fa fa-users"></i>
+													<span>Customers</span>
+													
+												</a>								
+											</li>
+											<li>
+												<a href="/program-list/">
+													<i class="fa fa-calendar"></i>
+													<span>Programs</span>
+												</a>
+											</li>
+											<li>
+												<a href="/workout/">
+													<i class="fa fa-star-o"></i>
+													<span>Workouts</span>
+												</a>
+				
+											</li>
+											<li>
+												<a href="/exercise-list/" >
+													<i class="fa fa-rocket"></i>
+													<span>Exercises</span>
+												</a>
+											</li>
+											<li>
+												<a href="#">
+													<i class="fa fa-gbp"></i>
+													<span>Payments</span>
+												</a>
+											</li>
+											<li>
+												<a href="#">
+													<i class="fa fa-gears"></i>
+													<span>Services</span>
+												</a>
+											</li>
+											<li>
+												<a href="#">
+													<i class="fa fa-table"></i>
+													<span>Master Tables</span>
+												</a>
+											</li>
+											
+												</ul>
+					</div>
+				</section>
+			</div>
+			<div class="col-md-10" id="content-wrapper">
+				<div class="row">
+					<div class="col-lg-12">	
+						<h1>Exercise</h1>
+						
+					<div class="row">
+						<form role="form" name="myform" id="targets" method="POST" onsubmit="return validateAndUpdateInstructionList()" enctype="multipart/form-data" action="/save-exercise/">
+							<div class="col-lg-9">
+								<div class="main-box">
+								<input type="hidden" name="exercise_instruction_list" id="exercise_instruction_list"></input>									
+									
+							    <div class="clearfix">
+										<h2 class="pull-left">Add Exercise </h2>
+										
+										<div class="filter-block pull-right">		
+											<a href="/exercise-list/" class="btn btn-primary pull-right" style="width: 175px;">
+												<i class="fa  fa-lg"></i>Cancel
+											</a>
+											<input type="submit" class="btn btn-primary pull-right" style="width: 175px;" value="Save">
+												<i class="fa  fa-lg"></i>
+											</input>
+										</div>
+									</div>
+									
+	
+										<div class="form-group">
+											<label >Exercise Name</label>
+											<input type="text" class="form-control" pattern="[a-zA-Z\s]+" name="exercise_name" id="exercise_name" required="required" placeholder="">
+										</div>
+									
+                              <div class="form-group form-group-select2">
+                             <div class="row">
+                             <div class="col-lg-4">
+											<label>Body Part</label>
+											<select  style="width:100%" name="body_part" id="BODYPART">												
+												{% for bodypart in bodypart_list %}
+														<option  value="{{ bodypart.bodypart_id}}">{{ bodypart.bodypart_name }}</option>
+												{% endfor %}		
+											</select>
+										</div>		
+																
+											 <div class="col-lg-4">
+											<label> Gender</label>
+											<select style="width:100%" name="gender" id="GENDER">
+												<option>male</option>
+												<option>female</option>		
+											</select>	
+										</div>
+										
+										<div class="col-lg-4">
+										  <label>Exercise Objective</label>
+											<select style="width:100%" name="exercise_category" id="OBJECTIVE">
+												{% for category in category_list %}	
+														<option value="{{ category.category_id }}"> {{ category.category_name }}</option>
+												{% endfor %}
+											</select>
+										</div>
+										</div>
+										</div>
+										
+										<div class="row">
+										  <div class="col-lg-4">
+													 <!-- <div class="pull-left"> -->
+													  <label>Gym Access</label>
+											   		<select style="width:100%" name="gym" id="GYM_ACCESS">
+															<option value="yes">yes</option>
+															<option value="no">no</option>		
+													</select>
+												<!-- </div> -->
+											</div>	
+											
+											<div class="col-lg-4">
+													 <!-- <div class="pull-left"> -->
+													  <label>Exercise Intensity</label>
+											   		<select style="width:100%" name="intensity" id="EXE_INTENSITY">
+															<option value="Easy">Easy</option>
+															<option value="Medium">Medium</option>	
+															<option value="Hard">Hard</option>	
+														</select>
+													<!-- </div> -->
+											</div>			
+											
+								
+											<div class="col-lg-4">											   
+											   <div class="form-group">
+													<label >Exercise Time</label>
+														<input type="time" class="form-control"  required="required" pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" placeholder="HH:MM:SS" name="exercise_time" id="exercise_time" value ="{{ value|time:"MM:SS" }}" ></input>
+													</div>
+											</div>	   											
+										</div>
+																				   
+											   <div class="form-group">
+											   <div class="row">
+											   <div class="col-lg-10">
+													<label>Exercise Instructions</label>
+													<input type="text" id="instruction"  class="form-control" pattern="[^a-zA-Z 0-9]+"></input>
+													</div>
+													
+													<div class="col-lg-2" >
+														   <label>&nbsp;</label><br>
+															<div id="btnAddInstruction" class="btn btn-success">Add</div>
+													</div>
+											</div>										
+										
+								<div class="table-responsive">
+										<table class="table" id="instructions_table">
+											<thead>
+												<tr>
+													<th style="width:90%"><span>Instructions</span></th>
+													<th><span>Delete</span></th>
+												</tr>
+										</thead>
+									</table>
+								</div>
+								</div>						
+																																								
+									<!-- 	<div class="form-group" id="comment">
+											<label for="exampleTextarea">Exercise Instructions</label>												
+									     <textarea class="form-control ckeditor" name="exercise_instructions"  rows="3" required="required" > {{ exercise_instruction }} </textarea>
+									</div> -->							  														
+									</form>
+								</div>	
+							</div>				
+						<div class="col-lg-3">
+								<div class="main-box" style="min-height: 0px;">
+									<h2>Upload Video</h2>
+									
+									<div id="dropzone">
+										<form id="demo-upload" class="dropzone dz-clickable" action="#">
+											<div class="dz-default dz-message">
+												<span>Drop files here to upload</span>
+											</div>
+										</form>
+									</div>			
+							 </div>
+	   				  </div>
+					  </div>								
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer id="footer-bar">
+		<p id="footer-copyright">
+			&copy; 2015-16 <a href="http://www.adbee.sk/" target="_blank">TrainMeFit</a>
+		</p>
+	</footer>
+	
+	<!-- global scripts -->
+	<script src="{% static 'assets/js/jquery.js'%}"></script>
+	<script src="{% static 'assets/js/bootstrap.js'%}"></script>
+	<script src="{% static 'assets/js/dropzone.js'%}"></script>
+	
+	<!-- this page specific scripts -->
+	<script src="{% static 'assets/js/jquery.maskedinput.min.js'%}"></script>
+	<script src="{% static 'assets/js/bootstrap-datepicker.js'%}"></script>
+	<script src="{% static 'assets/js/moment.min.js'%}"></script>
+	<script src="{% static 'assets/js/daterangepicker.js'%}"></script>
+	<script src="{% static 'assets/js/bootstrap-timepicker.min.js'%}"></script>
+	<script src="{% static 'assets/js/select2.min.js'%}"></script>
+	<script src="{% static 'assets/js/hogan.js'%}"></script>
+	<script src="{% static 'assets/js/typeahead.min.js'%}"></script>
+	<script src="{% static 'assets/js/jquery.pwstrength.js'%}"></script>
+	<script src="{% static 'assets/js/ckeditor/ckeditor.js'%}"></script>
+	<script src="{% static 'assets/js/additional-methods.js'%}"></script>
+	
+	<!-- theme scripts -->
+	<script src="{% static 'assets/js/scripts.js'%}"></script>
+	
+	<!-- this page specific inline scripts -->
+	
+	
+	<script>
+	var instructions_id_array =[];
+	$(function($) {
+			// TO ADD THE INSTRUCTION ON ADD BUTTON  //				
+			
+			 $("#btnAddInstruction").click(function()  {	
+			 isValid($('#instruction').val());
+			 
+			 if($.isNumeric( $('#instruction').val() )){
+			alert('Instruction can not be only number!');
+      		return false;
+		}	
+
+				
+			
+			 if($('#instruction').val() == ''){
+      		alert('Input can not be left blank');
+      		return false;
+      		}
+      		
+      		if($.trim($('#instruction').val()) == ''){
+			      alert('Input can not be left blank');
+			      return false;
+			   }			
+					
+				console.log("add instruction");
+				if($.inArray( $('#instruction').val(), instructions_id_array )>=0){
+ 						alert('This Instructions is already exist');
+				}else{
+				instructions_id_array.push($('#instruction').val());
+				console.log('Array : '+instructions_id_array);
+				$("#instructions_table").append(
+					'<tr class="delIns" id="row_id">'+	
+					'<td class="text-left">'+ $('#instruction').val()+"</td>"+
+					'<td> <a id="b1" class="delete table-link danger deleterow" style="cursor: pointer;" ><span class="fa-stack"><i class="fa fa-square fa-stack-2x"></i>' +
+							'<i class="fa fa-trash-o fa-stack-1x fa-inverse" onclick="myFunction($(this))"></i> </span></a>'+ '</td>'+'</tr>'
+				);
+				$('#instruction').val('');
+
+				}
+			});
+			
+					
+			
+				
+
+		//tooltip init
+		$('#exampleTooltip').tooltip();
+
+		//nice select boxes
+		$('#BODYPART').select2();
+		$('#GENDER').select2();
+		$('#GYM_ACCESS').select2();
+		$('#OBJECTIVE').select2();
+		$('#EXE_INTENSITY').select2();
+		
+		$('#sel2Multi').select2({
+			placeholder: 'Select a Country',
+			allowClear: true
+		});
+	
+	// This is for toggle switch
+	
+		$('#myonoffswitch4').change(function() { 
+			//$('.onoffswitch-inner').html('Toggle: ' + $(this).prop('checked'));
+			console.log($(this).prop('checked'));
+			$('#switch_gym').val($(this).prop('checked'));
+			
+		});
+	
+	
+		//masked inputs
+		$("#maskedDate").mask("99/99/9999");
+		$("#maskedPhone").mask("(999) 999-9999");
+		$("#maskedPhoneExt").mask("(999) 999-9999? x99999");
+		$("#maskedTax").mask("99-9999999");
+		$("#maskedSsn").mask("999-99-9999");
+		
+		$("#maskedProductKey").mask("a*-999-a999",{placeholder:" ",completed:function(){alert("You typed the following: "+this.val());}});
+		
+		$.mask.definitions['~']='[+-]';
+		$("#maskedEye").mask("~9.99 ~9.99 999");
+	
+		//datepicker
+		$('#datepickerDate').datepicker({
+		  format: 'mm-dd-yyyy'
+		});
+
+		$('#datepickerDateComponent').datepicker();
+		
+		//daterange picker
+		$('#datepickerDateRange').daterangepicker();
+		
+		//timepicker
+		$('#timepicker').timepicker({
+			minuteStep: 5,
+			showSeconds: true,
+			showMeridian: false,
+			disableFocus: false,
+			showWidget: true
+		}).focus(function() {
+			$(this).next().trigger('click');
+		});
+		
+		//autocomplete simple
+		$('#exampleAutocompleteSimple').typeahead({                              
+			prefetch: '/data/countries.json',
+			limit: 10
+		});
+		
+		//autocomplete with templating
+		$('#exampleAutocomplete').typeahead({                              
+			name: 'twitter-oss',                                                        
+			prefetch: '/data/repos.json',                                             
+			template: [                                                              
+				'<p class="repo-language">{{language}}</p>',                              
+				'<p class="repo-name">{{name}}</p>',                                      
+				'<p class="repo-description">{{description}}</p>'                         
+			].join(''),                                                                 
+			engine: Hogan                                                               
+		});
+		
+		//password strength meter
+		$('#examplePwdMeter').pwstrength({
+			label: '.pwdstrength-label'
+		});
+		
+	});
+
+// TO REMOVE THE INSTRUCTION //
+
+function myFunction(row) {
+	instructions_id_array.splice($.inArray(row.closest('tr').children('td:first').text(),instructions_id_array) ,1 );
+   row.closest('tr').remove();    
+}
+
+
+function isValid(str) {
+    var check_status=0;
+    //var iChars = "~`!#$%^&*+=-[]\\\';,/{}|\":<>?";
+    var iChars="ABC";
+    for (var i = 0; i < str.length; i++) {
+       if (iChars.indexOf(str[i])) {
+       alert(str[i]);
+           check_status=check_status+1;
+       }
+    }
+    
+    alert(check_status+"   "+str.length)
+}
+
+
+
+// TO SEND THE INSTRUCTIONS // 
+
+function validateAndUpdateInstructionList(){
+			var ex_time=$("#exercise_time").val().split(":");
+	 			if(ex_time[0]=="00"&&ex_time[1]=="00"&&ex_time[2]=="00"){
+					alert('Exercise time can not be 0!');
+					return false; 			
+	 			}	 
+	 			
+	 			if($('#exercise_name').val() == ''){
+      		alert('Exercise Name can not be left blank !');
+      		return false;
+      		}
+      		
+      		if($.trim($('#exercise_name').val()) == ''){
+			      alert('Exercise Name can not be left blank !');
+			      return false;
+			   }				
+	 			
+				$('#exercise_instruction_list').val(instructions_id_array);
+				return true;
+			};
+	</script>
+ 
+</body>
+</html>

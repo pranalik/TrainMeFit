@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<!--[if IE 9]>
+<html class="lt-ie10" lang="en" >
+   <![endif]-->
+   <html class="no-js" lang="en">
+      {% load staticfiles %}
+      <head>
+      
+         <meta charset="utf-8">
+         <!-- If you delete this meta tag World War Z will become a reality -->
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <title>TrainMeFit: User</title>
+         <!-- If you are using the CSS version, only link these 2 files, you may add app.css to use for your overrides if you like -->
+         <link rel="stylesheet" href="{% static 'assets/css/normalize.css'%}"></link>
+         <link rel="stylesheet" href="{% static 'assets/css/foundation.css'%}"></link>
+         <!-- If you are using the gem version, you need this only -->
+			<link rel="stylesheet" href="{% static 'assets/css/app.css'%}"></link>
+			<link rel="stylesheet" href="{% static 'assets/css/jquery.dataTables.min.css'%}"></link>
+			<script src="{% static 'assets/js/vendor/jquery.js'%}"></script>
+         <script src="{% static 'assets/js/vendor/modernizr.js'%}"></script>
+         <script src="{% static 'assets/js/jquery-1.11.1.min.js'%}"></script>
+         <script src="{% static 'assets/js/new-data-tables.js'%}"></script>
+
+		<style>
+        html, body {
+            height: auto;
+            background-color: #d3d3d3;
+            font-family: "Roboto",sans
+        }
+
+        .main {
+            height: auto;
+            width: 100%;
+            background-color: #fff;
+            display: table;
+        }
+		 .full_width{
+		 	width: 100% !important;
+		  }
+
+        .wrapper {
+            display: table-cell;
+            width: 100%;
+            height: auto;
+            vertical-align: middle;
+        }
+       
+        @media all and (max-width:800px) {
+            #login {
+                width: 100%;
+                padding: 0;
+            }
+            img{
+            	width: 90%;
+            }
+        }
+    	</style>
+    	</head>
+    	
+    	<body >
+   <!-- Top Bar -->
+	<nav class="top-bar foundation-bar" data-topbar="" style="background-color : #626468 !important;">
+	  <ul class="title-area">
+		    <li class="name">
+		    		<!--  <div id=""></div> -->
+		    		<img id="tmf_logo" src="{% static 'assets/img/TrainMeFit_header.png'%}"/>
+		    </li>
+	  </ul>
+	  <section class="top-bar-section" style="color: #fff">
+	    <!-- Right Nav Section -->
+		    <ul class="right" style="padding-right: 15px;">
+		    		<li> 
+		    			<div style="height: 60px;">
+		    				<span>Hi, Manoj</span><br>
+		    				<a href="/sign-out-admin/">Logout </a>
+		    			</div>
+		    		</li>
+		    		<li>
+		    			<div >
+								<img  class="img-circular" src="{%static 'assets/img/MB.png'%}" alt="" >		    			
+		    			</div>
+		    		</li>
+		    </ul>
+	  </section>
+	</nav> 
+
+                   <!-- End of Top Bar -->
+                           <!-- Start of sub menus -->
+<div class="icon-bar eight-up menu-align" role="navigation">
+						  <a href="/dashboard/" class="item" aria-labelledby="#itemlabel1">
+						    <label id='itemlabel1'>Dashboard</label>
+						  </a>
+						 <!--  <label id='itemlabel3'>/</label> -->
+						  <a class="item active" aria-labelledby="#itemlabel2">
+						    <label id='itemlabel2'>Users</label>
+						  </a>
+						<!--   <label id='itemlabel3'>/</label> -->
+						  <a class="item" aria-labelledby="#itemlabel3">
+						    <label id='itemlabel3'>Programs</label>
+						  </a>
+						 <!--  <label id='itemlabel3'>/</label> -->
+						  <a href="/workout/" class="item" aria-labelledby="#itemlabel4">
+						    <label id='itemlabel4'>Workouts</label>
+						  </a>
+						 <!--  <label id='itemlabel3'>/</label> -->
+						  <a href="/exercise-list/" class="item" aria-labelledby="#itemlabel5">
+						    <label id='itemlabel5'>Exercises</label>
+						  </a>
+						 <!--  <label id='itemlabel3'>/</label> -->
+						  <a href="/payments/" class="item" aria-labelledby="#itemlabel6">
+						    <label id='itemlabel6'>Payments</label>
+						  </a>
+						 <!--  <label id='itemlabel3'>/</label> -->
+						  <a href="/master/"  class="item" aria-labelledby="#itemlabel7">
+						    <label id='itemlabel7'>Master</label>
+						  </a>
+						 <!--  <label id='itemlabel3'>/</label> -->
+						  <a class="item" aria-labelledby="#itemlabel8">
+						    <label id='itemlabel8'>Services</label>
+						  </a>
+						  	
+			<!-- This is for wrapper -->
+     <div class="row fullWidth" style="background-color: #fff; height: 100%;">
+     	 <div class="row-collapse fullWidth" style="padding: 15px;">
+			<div class="large-12 columns" style="margin-bottom: 0px; margin-top: 15px;"> 
+				
+
+ <!-- body content here -->
+         <script src="{% static 'assets/js/foundation.min.js'%}"></script>
+         <script>
+            $(document).foundation();
+         </script>
+  </body>
+</html>		 
+		 
+		 			    
+		  
+						  
+						  
+						  
+						  					  

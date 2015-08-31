@@ -1,0 +1,19 @@
+
+
+def get_user_profile_editor(user_id):
+    try:
+        user_object = UserProfile.objects.get(id=user_id)    
+        
+        data ={
+            "Name":user_object.user_name,
+            "NickName":user_object.user_nickname,
+            "Age":user_object.user_age,
+            "Gender":user_object.user_gender,
+            "Height":user_object.user_height,
+            "ProfilePic":user_object.user_profilepic,
+            "FullName":user_object.user_fullname
+        }
+    except Exception, e:
+        print e
+        data = {'success':'false'}
+        

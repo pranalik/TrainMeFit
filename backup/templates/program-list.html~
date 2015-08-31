@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<!--[if IE 9]>
+<html class="lt-ie10" lang="en" >
+   <![endif]-->
+   <html class="no-js" lang="en">
+      {% load staticfiles %}
+      <head>
+      
+         <meta charset="utf-8">
+         <!-- If you delete this meta tag World War Z will become a reality -->
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <title>TrainMeFit: User</title>
+         <!-- If you are using the CSS version, only link these 2 files, you may add app.css to use for your overrides if you like -->
+         <link rel="stylesheet" href="{% static 'assets/css/normalize.css'%}"></link>
+         <link rel="stylesheet" href="{% static 'assets/css/foundation.css'%}"></link>
+         <!-- If you are using the gem version, you need this only -->
+			<link rel="stylesheet" href="{% static 'assets/css/app.css'%}"></link>
+			<link rel="stylesheet" href="{% static 'assets/css/jquery.dataTables.min.css'%}"></link>
+			<script src="{% static 'assets/js/vendor/jquery.js'%}"></script>
+         <script src="{% static 'assets/js/vendor/modernizr.js'%}"></script>
+         <script src="{% static 'assets/js/jquery-1.11.1.min.js'%}"></script>
+         <script src="{% static 'assets/js/new-data-tables.js'%}"></script>
+		<style>
+        html, body {
+            height: 100%;
+            background-color: #d3d3d3;
+            font-family: "Roboto",sans
+        }
+
+        .main {
+            height: 100%;
+            width: 100%;
+            background-color: #fff;
+            display: table;
+        }
+		 .full_width{
+		 	width: 100%;
+		  }
+
+        .wrapper {
+            display: table-cell;
+            width: 100%;
+            height: 100%;
+            vertical-align: middle;
+        }
+       
+        @media all and (max-width:800px) {
+            #login {
+                width: 100%;
+                padding: 0;
+            }
+            img{
+            	width: 90%;
+            }
+        }
+			.img-circular{
+				width: 60px;
+				height: 60px;
+				background-image: url('http://strawberry-fest.org/wp-content/uploads/2012/01/Coca-Cola-logo.jpg');
+				background-size: cover;
+				display: block;
+				border-radius: 100px;
+				-webkit-border-radius: 100px; /* for chrome */
+				-moz-border-radius: 100px; /* for mozilla */
+			}        
+        
+    	</style>
+	<script type="text/javascript" >
+				/* Formatting function for row details - modify as you need */
+		function format ( d ) {
+		    // `d` is the original data object for the row
+		    return '<div classs="row"><table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+		        '<tr>'+
+		            '<td>Full name:</td>'+
+		            '<td>'+d.prg_name+'</td>'+
+		        '</tr>'+
+		        '<tr>'+
+		            '<td>Extension number:</td>'+
+		            '<td>'+d.description+'</td>'+
+		        '</tr>'+
+		        '<tr>'+
+		            '<td>Extra info:</td>'+
+		            '<td>And any further details here (images etc)..</td>'+
+		        '</tr>'+
+		    '</table> </div>';
+		}
+		 
+		$(document).ready(function() {
+		    var table = $('#example').DataTable( {
+		        "ajax": "{%static 'assets/data/programs.json'%}",
+		        "columns": [
+		            {
+		                "className":      'details-control',
+		                "orderable":      false,
+		                "data":           null,
+		                "defaultContent": ''
+		            },
+		            { "data": "prg_name" },
+		            { "data": "description" },
+		            { "data": "expand_list" }
+		        ],
+		        "order": [[1, 'asc']]
+		    });
+		     
+		    // Add event listener for opening and closing details
+		    $('#example tbody').on('click', 'td.details-control', function () {
+		        var tr = $(this).closest('tr');
+		        var row = table.row( tr );
+		 
+		        if ( row.child.isShown() ) {
+		            // This row is already open - close it
+		            row.child.hide();
+		            tr.removeClass('shown');
+		        }
+		        else {
+		            // Open this row
+		            row.child( format(row.data()) ).show();
+		            tr.addClass('shown');
+		        }
+		    } );
+		});
+	</script>    	
+    	
+    	
+    	
+    	
+    	
+  </head>
+  <body >
+  
+   <!-- Top Bar -->
+	<nav class="top-bar foundation-bar" data-topbar="" style="background-color : #626468 !important;">
+	  <ul class="title-area">
+		    <li class="name">
+		    		<!--  <div id=""></div> -->
+		    		<img id="tmf_logo" src="{% static 'assets/img/TrainMeFit_header.png'%}"></img>
+		    </li>
+	  </ul>
+	  <section class="top-bar-section" style="color: #fff">
+	    <!-- Right Nav Section -->
+		    <ul class="right" style="padding-right: 15px;">
+		    		<li> 
+		    			<div style="height: 60px;">
+		    				<span>Hi, Manoj</span><br>
+		    				<a href="/sign-out-admin/"> Logout </a>
+		    			</div>
+		    		</li>
+		    		<li>
+		    			<div >
+								<img  class="img-circular" src="{%static 'assets/img/MB.png'%}" alt="" >		    			
+		    			</div>
+		    		</li>
+		    </ul>
+	  </section>
+	</nav> 
+
+   <!-- End of Top Bar -->
+   <!-- Start of sub menus -->
+   	 <div class="icon-bar eight-up menu-align" role="navigation" >
+						  <a href="#" class="item-first active" aria-labelledby="#itemlabel1">
+						    <label id='itemlabel1'>Dashboard</label>
+						  </a>
+						 <!--  <label id='itemlabel3'>/</label> -->
+						  <a href="/user-section/" class="item" aria-labelledby="#itemlabel2">
+						    <label id='itemlabel2'>Users</label>
+						  </a>
+						<!--   <label id='itemlabel3'>/</label> -->
+						  <a class="item" aria-labelledby="#itemlabel3">
+						    <label id='itemlabel3'>Programs</label>
+						  </a>
+						 <!--  <label id='itemlabel3'>/</label> -->
+						  <a href="/workout/" class="item" aria-labelledby="#itemlabel4">
+						    <label id='itemlabel4'>Workouts</label>
+						  </a>
+						 <!--  <label id='itemlabel3'>/</label> -->
+						  <a class="item" aria-labelledby="#itemlabel5">
+						    <label id='itemlabel5'>Exercises</label>
+						  </a>
+						 <!--  <label id='itemlabel3'>/</label> -->
+						  <a href="/payments/"  class="item" aria-labelledby="#itemlabel6">
+						    <label id='itemlabel6'>Payments</label>
+						  </a>
+						 <!--  <label id='itemlabel3'>/</label> -->
+						  <a href="/master/" class="item" aria-labelledby="#itemlabel7">
+						    <label id='itemlabel7'>Master</label>
+						  </a>
+						 <!--  <label id='itemlabel3'>/</label> -->
+						  <a href="/services/" class="item" aria-labelledby="#itemlabel8">
+						    <label id='itemlabel8'>Services</label>
+						  </a>
+			</div>
+			<!-- End of sub menus -->
+	     	<!-- This is for wrapper -->
+     <div style="background-color: #fff; height: 100%;">
+			<div class="row style=background-color: #fff; height: 100%;">       
+	    			<div class="large-1 columns"  id="search-icon" >
+						<p></p>
+				   </div>
+				<div class="large-7 columns" style="padding-left: 0px;">
+					<div class="row collapse postfix-radius">
+						<div class="small-12 columns" >
+							<input placeholder="Search" type="search-text" id="search" 	aria-controls="example"></input>
+						</div>
+					</div>
+				</div>
+				<!--  search textbox ends -->
+				
+				                        <!------ Tab for Add new Exercises---------->
+             <div class="large-4 columns">
+                <div class="row" >
+                    <div class="large-6 columns" id="plus_icon"></div>
+                    <div class="large-6 columns button"> <a href="/add-exercise/">Add New Exercises </a></div>
+             </div>   
+             </div> 
+           
+           
+  <table id="example" class="display" width="100%" cellspacing="0">           
+        <thead>
+            <tr style="display:none;">
+                <th></th>
+                <th>Name</th>
+                <th>Position</th>
+            </tr>
+        </thead>
+
+    </table>
+    </div> 
+         <!-- body content here -->
+         <script src="{% static 'assets/js/foundation.min.js'%}"></script>
+         <script>
+            $(document).foundation();
+         </script>
+  </body>
+</html>

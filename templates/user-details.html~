@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!--[if IE 9]>
+<html class="lt-ie10" lang="en" >
+   <![endif]-->
+   <html class="no-js" lang="en">
+      {% load staticfiles %}
+      <head>
+      
+         <meta charset="utf-8">
+         <!-- If you delete this meta tag World War Z will become a reality -->
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <title>TrainMeFit: User</title>
+         <!-- If you are using the CSS version, only link these 2 files, you may add app.css to use for your overrides if you like -->
+         <link rel="stylesheet" href="{% static 'assets/css/normalize.css'%}"></link>
+         <link rel="stylesheet" href="{% static 'assets/css/foundation.css'%}"></link>
+         <!-- If you are using the gem version, you need this only -->
+			<link rel="stylesheet" href="{% static 'assets/css/app.css'%}"></link>
+			<link rel="stylesheet" href="{% static 'assets/css/jquery.dataTables.min.css'%}"></link>
+			<script src="{% static 'assets/js/vendor/jquery.js'%}"></script>
+         <script src="{% static 'assets/js/vendor/modernizr.js'%}"></script>
+         <script src="{% static 'assets/js/jquery-1.11.1.min.js'%}"></script>
+         <script src="{% static 'assets/js/jquery.dataTables.min.js'%}"></script>
+	
+  </head>
+  <body >
+  
+   <!-- Top Bar -->
+	<nav class="top-bar foundation-bar" data-topbar="" style="background-color : #626468 !important;">
+	  <ul class="title-area">
+		    <li class="name">
+		    		<!--  <div id=""></div> -->
+		    		<img id="tmf_logo" src="{% static 'assets/img/TrainMeFit_header.png'%}"></img>
+		    </li>
+	  </ul>
+	  <section class="top-bar-section" style="color: #fff">
+	    <!-- Right Nav Section -->
+		    <ul class="right" style="padding-right: 15px;">
+		    		<li> 
+		    			<div style="height: 60px;">
+		    				<span>Hi, Manoj</span><br>
+		    				<a href="/sign-out-admin/"> Logout </a>
+		    			</div>
+		    		</li>
+		    		<li>
+		    			<div>
+								<img  class="img-circular" src="{%static 'assets/img/MB.png'%}" alt="" >		    			
+		    			</div>
+		    		</li>
+		    </ul>
+	  </section>
+	</nav>
+   <!-- End of Top Bar -->
+   <!-- Start of sub menus -->
+   	 <div class="icon-bar eight-up menu-align" role="navigation">
+						  <a href="/dashboard/" class="item-first" aria-labelledby="#itemlabel1">
+						    <label id='itemlabel1'>Dashboard</label>
+						  </a>
+						 <!--  <label id='itemlabel3'>/</label> -->
+						  <a href="/user-section/" class="item active" aria-labelledby="#itemlabel2">
+						    <label id='itemlabel2'>Users</label>
+						  </a>
+						<!--   <label id='itemlabel3'>/</label> -->
+						  <a class="item" aria-labelledby="#itemlabel3">
+						    <label id='itemlabel3'>Programs</label>
+						  </a>
+						 <!--  <label id='itemlabel3'>/</label> -->
+						  <a class="item" aria-labelledby="#itemlabel4">
+						    <label id='itemlabel4'>Workouts</label>
+						  </a>
+						 <!--  <label id='itemlabel3'>/</label> -->
+						  <a class="item" aria-labelledby="#itemlabel5">
+						    <label id='itemlabel5'>Exercises</label>
+						  </a>
+						 <!--  <label id='itemlabel3'>/</label> -->
+						  <a href="/payments/"  class="item" aria-labelledby="#itemlabel6">
+						    <label id='itemlabel6'>Payments</label>
+						  </a>
+						 <!--  <label id='itemlabel3'>/</label> -->
+						  <a href="/master/" class="item" aria-labelledby="#itemlabel7">
+						    <label id='itemlabel7'>Master</label>
+						  </a>
+						 <!--  <label id='itemlabel3'>/</label> -->
+						  <a href="/services/" class="item" aria-labelledby="#itemlabel8">
+						    <label id='itemlabel8'>Services</label>
+						  </a>
+			</div>
+			<!-- End of sub menus -->
+	     	<!-- This is for wrapper -->
+     <div class ="row fullwidth" style="background-color: #ffffff; height: 100%;">
+	    
+	    <div class="row collapse" style="border-bottom: 2px solid #d3d3d3;">		
+	    <!-- This is for the title row where user's profile picture and edit, save button icon will available -->
+	    		<div class="small-1 columns vert-15-hor-center" >
+	    			<img src="{%static 'assets/img/edit-24.png' %}"></img>
+	    		</div>
+	    		<div class="small-1 columns vert-15-hor-center">
+						<p>Edit Mode : </p>    		
+	    		</div>
+	    		<div class="small-1 columns">
+	    			<img class="img-circular" src="{%static 'assets/img/vkm_chandel.png' %}"></img>
+				</div>
+	    		<div class="small-7 columns" style="padding-top:15px;"><p>User Name</p></div>
+	    		<div class="small-1 columns vert-15-hor-center">
+					<img src="{%static 'assets/img/delete-sign-25.png'%}"></img> 		
+	    		</div>
+	    		<div class="small-1 columns vert-15-hor-center">
+					<img src="{%static 'assets/img/save-as-25.png'%}"></img>    
+	    		</div>
+	    </div>
+	    <div class="row collapse"><p></p></div>
+	    <div class="row collapse">
+	    	  <div class="large-6  columns large-centered">
+			    <ul class="tabs" data-tab role="tablist" style="line-height: 0.6;">
+			    	<li class="tab-title active" role="presentational" >
+			    		<a class="first-child" href="#panel2-1" role="tab" tabindex="0" aria-selected="true" controls="panel2-1">User Info</a>
+			    	</li>
+			    	<li class="tab-title" role="presentational" >
+			    		<a href="#panel2-2" role="tab" tabindex="0"aria-selected="false" controls="panel2-2">Program Info</a>
+			    	</li>
+			    	<li class="tab-title" role="presentational">
+			    		<a href="#panel2-3" role="tab" tabindex="0" aria-selected="false" controls="panel2-3">Diet Info</a>
+			    	</li>
+			    	<li class="tab-title" role="presentational" >
+			    		<a href="#panel2-4" role="tab" tabindex="0" aria-selected="false" controls="panel2-4">Payments</a>
+			    	</li>
+			    	<li class="tab-title" role="presentational" >
+			    		<a class="last-child" href="#panel2-5" role="tab" tabindex="0" aria-selected="false" controls="panel2-5">Other</a>
+			    	</li>
+			    </ul>
+			  </div>
+		  </div>
+			    <!-- Tab Detail Section -->
+		  <div class="row collapse">
+			    <div class="tabs-content">
+			    		<section role="tabpanel" aria-hidden="false" class="content active" id="panel2-1">
+			    				<h2>
+			    				
+			    						User Information will be here....
+			    				
+			    				</h2>
+			    		</section>
+			    		<section role="tabpanel" aria-hidden="true" class="content" id="panel2-2">
+			    				<h2>
+			    				
+			    						User's Program, Workout and exercise information will be here...
+			    						
+			    				</h2>
+			    		</section>
+			    		<section role="tabpanel" aria-hidden="true" class="content" id="panel2-3">
+			    				<h2>
+			    						
+			    						User's Diet Information will be appear in this section
+			    						
+			    				</h2>
+			    		</section>
+			    		<section role="tabpanel" aria-hidden="true" class="content" id="panel2-4">
+			    				<h2>
+			    				
+			    						The Payement Details will be appear here
+			    				
+			    				</h2>
+			    		</section>
+			    		<section role="tabpanel" aria-hidden="true" class="content" id="panel2-5">
+			    				<h2>
+			    						
+			    						The other information will be displayed in this section
+			    						
+			    				</h2>
+			    		</section>
+			    </div>
+	   	</div>
+     </div>
+         <!-- body content here -->
+         <script src="{% static 'assets/js/foundation.min.js'%}"></script>
+         <script>
+            $(document).foundation();
+         </script>
+  </body>
+</html>

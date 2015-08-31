@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html>
+ {% load staticfiles %}
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Customer-Profile</title>
+	
+	<!-- bootstrap -->
+	<link href="{% static 'assets/css/bootstrap/bootstrap.css' %}" rel="stylesheet" />
+
+	<!-- libraries -->
+	<link href="{% static 'assets/css/libs/font-awesome.css' %}" type="text/css" rel="stylesheet" />
+	<link rel="stylesheet" href="{% static 'assets/css/libs/select2.css'%}" type="text/css" />
+	
+	<!-- global styles -->
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/compiled/layout.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/css/compiled/elements.css'%}">
+
+	<!-- this page specific styles -->
+	<link rel="stylesheet" href="{%static 'assets/css/libs/datepicker.css'%}" type="text/css" %}>
+	
+
+	
+	<!-- google font libraries -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300|Titillium+Web:200,300,400' rel='stylesheet' type='text/css'>
+
+
+
+
+<style type="text/css">
+#user-profile .profile-user-info .profile-user-details .profile-user-details-label {
+    float: left;
+    bottom: 0px;
+    font-weight: bold;
+    left: 0px;
+    position: absolute;
+    text-align: left;
+    top: 0px;
+    width: -1px;
+    padding-top: 4px;
+}
+
+.input-group-addon {
+    padding: 0px 12px;
+    font-size: 8px;
+    font-weight: normal;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    background-color: #EEE;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 2px 12px;
+    font-size: 11px;
+    line-height: 1.42857;
+    color: #555;
+    background-color: #FFF;
+    background-image: none;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+}
+
+.datepicker{z-index:9999 !important;}
+</style>
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-49262924-1', 'phoonio.com');
+	  ga('send', 'pageview');
+
+	</script>
+</head>
+<body>
+	<header class="navbar" id="header-navbar">
+		<div class="container">
+		<a href="#" id="logo" class="navbar-brand col-md-3 col-sm-3 col-xs-12">
+				<img style="width: 30px;margin-top: -5px;" src="{% static 'assets/img/trainmefit.png'%}" alt=""><span>TrainMeFit</span>
+			</a>
+			
+			<button class="navbar-toggle" data-target=".navbar-ex1-collapse" data-toggle="collapse" type="button">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="fa fa-bars"></span>
+			</button>
+			
+			<div class="nav-no-collapse pull-right" id="header-nav">
+				<ul class="nav navbar-nav pull-right">
+					
+					<li class="dropdown profile-dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<img src="img/samples/profile-photo.png" alt=""/>
+							<span class="hidden-xs">{{ request.session.login_user }}</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="user-profile.html"><i class="fa fa-user"></i>Profile</a></li>
+							<li><a href="#"><i class="fa fa-cog"></i>Settings</a></li>
+							<li><a href="#"><i class="fa fa-envelope-o"></i>Messages</a></li>
+							<li><a href="/sign-out-admin/"><i class="fa fa-power-off"></i>Logout</a></li>
+						</ul>
+					</li>
+					<li class="hidden-xxs">
+						<a href="/sign-out-admin/" class="btn">
+							<i class="fa fa-power-off"></i>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2" id="nav-col">			
+				<section id="col-left">
+					<div class="collapse navbar-collapse navbar-ex1-collapse" id="sidebar-nav">	
+						<ul class="nav nav-pills nav-stacked">
+							<li>
+								<a href="/dashboard/">
+									<i class="fa fa-dashboard"></i>
+									<span>Dashboard</span>
+								</a>
+							</li>
+							<li>
+								<a href="/user-section/">
+									<i class="fa fa-users"></i>
+									<span>Customers</span>
+									
+								</a>								
+							</li>
+							<li>
+								<a href="/program-list/">
+									<i class="fa fa-calendar"></i>
+									<span>Programs</span>
+								</a>
+							</li>
+							<li>
+								<a href="/workout/">
+									<i class="fa fa-star-o"></i>
+									<span>Workouts</span>
+								</a>
+
+							</li>
+							<li>
+								<a href="/exercise-list/" >
+									<i class="fa fa-rocket"></i>
+									<span>Exercises</span>
+								</a>
+							</li>
+							<!-- <li>
+								<a href="#">
+									<i class="fa fa-gbp"></i>
+									<span>Payments</span>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="fa fa-gears"></i>
+									<span>Services</span>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="fa fa-table"></i>
+									<span>Master Tables</span>
+								</a> 
+							</li> -->
+						</ul>
+					</div>
+				</section>
+			</div>
+			
+			<div class="col-md-10" id="content-wrapper" style="min-height: 85vh;">
+				<div class="row">
+					<div class="col-lg-12">
+						
+						<h1>User Profile</h1>
+						<div class="row" id="user-profile">
+							<div class="col-lg-3 col-md-4 col-sm-4">
+								<div class="main-box clearfix">
+									<h2>{{ first_name }}</h2>
+									
+									
+									<img src="{{profile_pic}}" alt="" class="profile-img img-responsive center-block" />
+									
+									<div class="profile-label">
+										<span class="label label-danger">{{membership}}</span>
+									</div>
+									
+									
+									<br>
+									<div class="profile-since">
+										Member since: {{memeber_since}}
+									</div>
+									
+									<div class="profile-details">
+										<ul class="fa-ul">
+											<li><i class="fa-li fa  fa-check-circle"></i>BMI: <span>40</span></li>
+											<li><i class="fa-li fa  fa-check-circle"></i>Weight: <span>{{wt_in_kg}}</span></li>
+										
+										</ul>
+									</div>
+									
+									
+								</div>
+							</div>
+							
+							<div class="col-lg-9 col-md-8 col-sm-8">
+								<div class="main-box clearfix">
+									<div class="profile-header">
+										<h3><span>Customer info</span></h3>
+										<a href="#" class="btn btn-primary edit-profile">
+											<i class="fa fa-pencil-square fa-lg"></i> 
+											Edit profile
+										</a>
+									</div>
+									
+									<div class="row profile-user-info">
+										
+										 <div class="row">
+										 <div class="col-lg-12">
+											<div class="col-lg-7 profile-user-details clearfix">
+												<div class="col-lg-3 profile-user-details-label" style="width:30%; ">
+													First Name
+												</div>
+												<div class="edit_profile col-lg-3 profile-user-details-value">
+													{{ first_name }}
+												</div>
+											</div>
+											<div class="col-lg-5 profile-user-details clearfix">
+											<div class="row">
+												<div style="width:40%;" class="edit_profile col-lg-10 profile-user-details-label">
+													Phone number
+												</div>
+												<div class="edit_profile col-lg-2 profile-user-details-value">
+													{{ phone_number }}
+												</div>
+												</div>
+											</div>
+											</div>
+											</div>
+											
+											<div class="row">
+											<div class="col-lg-12">
+											<div class="col-lg-7 profile-user-details clearfix">											
+												<div class="col-lg-3 profile-user-details-label">
+													Last Name
+												</div>
+												<div class="col-lg-3 profile-user-details-value">
+													{{ last_name }}
+												</div>
+											</div>
+											
+											<div class="col-lg-5 profile-user-details clearfix">
+												<div class="col-lg-3 profile-user-details-label">
+													Date of Birth
+												</div>
+												<div class="col-lg-3 profile-user-details-value">
+													{{ dob }}
+												</div>
+											</div>
+											</div>
+											</div>
+											
+											<div class="row">
+											<div class="col-lg-12">
+											<div class="col-lg-7 profile-user-details clearfix ">
+												<div class="col-lg-3 profile-user-details-label">
+													Email
+												</div>
+												<div class="col-lg-3 profile-user-details-value">
+												<input id="user" type="hidden" value="{{email}}"></input>
+													{{ email }}
+												</div>
+											</div>
+											
+											
+											<div class="col-lg-5 profile-user-details clearfix">
+												<div class="col-lg-3 profile-user-details-label">
+													Gender
+												</div>
+												<div class="col-lg-3 profile-user-details-value">
+													{{ gender }}
+												</div>
+											</div>
+										</div>
+										</div>
+										
+										
+									</div>
+									
+									<div class="tabs-wrapper profile-tabs">
+										<ul class="nav nav-tabs">
+											<li class="active"><a href="#tab-activity" data-toggle="tab">Basic</a></li>
+											<li><a href="#tab-friends" data-toggle="tab">Program</a></li>
+											<li><a href="#tab-chat" data-toggle="tab">Payment</a></li>
+											<li><a href="#tab-chat" data-toggle="tab">Other</a></li>
+										</ul>
+										
+										<div class="tab-content">
+											<div class="tab-pane fade in active" id="tab-activity">
+												
+												<div class="table-responsive">
+													<div class="row profile-user-info">
+													<div class="col-sm-6">
+													<div class="profile-user-details clearfix">
+												<div class="profile-user-details-label">
+													Bench Press
+												</div>
+												<div class="profile-user-details-value">
+													{{ bench_press }}
+												</div>
+											</div>
+											<div class="profile-user-details clearfix">
+												<div class="profile-user-details-label">
+													Bicep Curl
+												</div>
+												<div class="profile-user-details-value">
+												{{ bicep_curl }}
+												</div>
+											</div>
+											<div class="profile-user-details clearfix">
+												<div class="profile-user-details-label">
+													Leg Press
+												</div>
+												<div class="profile-user-details-value">
+													{{ legt_press }}
+												</div>
+											</div>
+											<div class="profile-user-details clearfix">
+												<div class="profile-user-details-label">
+													Weight in Kgs
+												</div>
+												<div class="profile-user-details-value">
+													{{ wt_in_kg }}
+												</div>
+											</div>
+											
+											<div class="profile-user-details clearfix">
+												<div class="profile-user-details-label">
+													GYM Access
+												</div>
+												<div class="profile-user-details-value">
+													{{ gym_access }}
+												</div>
+											</div>
+											
+										</div>
+										<div class="col-sm-6">
+										<div class="profile-user-details clearfix">
+												<div class="profile-user-details-label">
+													User Objective
+												</div>
+												<div class="profile-user-details-value">
+													{{ objective }}
+												</div>
+											</div>
+											<div class="profile-user-details clearfix">
+												<div class="profile-user-details-label">
+													Workout/Week
+												</div>
+												<div class="profile-user-details-value">
+													{{ wrkt_per_week }}
+												</div>
+											</div>
+											<div class="profile-user-details clearfix">
+												<div class="profile-user-details-label">
+													Intensity
+												</div>
+												<div class="profile-user-details-value">
+													{{ intensity }}
+												</div>
+											</div>
+											<div class="profile-user-details clearfix">
+												<div class="profile-user-details-label">
+													Height in Cms
+												</div>
+												<div class="profile-user-details-value">
+													{{ height }}
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+											
+					<div class="tab-pane fade" id="tab-friends">			
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="main-box clearfix">
+									<div class="clearfix">
+									<div class="row">
+									<div class="col-lg-12">
+									<div class="col-lg-4">
+										<h5 class="pull-left">Customer Program List</h5>
+									</div>	
+									<div class="col-lg-4">
+										<div class="filter-block pull-right">
+											<!-- <div class="form-group pull-left">
+												<input class="form-control" placeholder="Search..." type="text" >
+												<i class="fa fa-search search-icon"></i>
+											</div> -->
+										</div>
+										</div>
+										<div class="col-lg-2"></div>
+										<div class="col-lg-2">	
+											<a  class="btn btn-primary pull-right"  data-toggle="modal" data-target="#myModal">
+												<i class="fa fa-plus-circle fa-lg"></i> Assign Program
+											</a>
+										</div>
+									</div>
+									</div>										
+									
+									<div class="table-responsive">
+										<table class="table">
+											<thead>
+												<tr>
+													<th><span>Name</span></th>
+													<th class="text-center"><span>Workouts</span></th>
+												<!-- 	<th class="text-center"><span>No of Exercises</span></th> -->
+													<th class="text-center"><span>Start Date</span></th>
+													<th class="text-center"><span>End Date</span></th>
+													<th class="text-center"><span>Status</span></th>
+													<th class="text-center"><span>Date Updated</span></th>
+													<th><span>View</span></th>
+												</tr>												
+											</thead>
+											<tbody>									
+										   
+												{% for program in cutomer_program_list  %}
+													<tr>
+														 <td> {{ program.program_name }} </td>	
+														 <td class="text-center"> {{ program.total_workout }} </td>
+														 <!-- <td class="text-center"> {{ program.total_exercises }} </td>	 -->	
+														 <td class="text-center"> {{ program.start_date }} </td>	
+														 <td class="text-center"> {{ program.end_date }} </td>													 
+														 <td class="text-center"> {{ program.status }} </td>	
+														 <td class="text-center"> {{ program.updated_date }} </td>	
+														 <td class="text-center"> <a href="/view-customer-program/?user_program_id={{program.user_program_id}}" class="table-link"> 
+														 <span class="fa-stack"><i class="fa fa-square fa-stack-2x"></i>
+														  <i class="fa fa-search-plus fa-stack-1x fa-inverse"></i> </span> </a> </td>	
+														</td>
+													</tr>	
+													{% endfor %}	
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+											
+											<div class="tab-pane fade" id="tab-chat">
+												
+											</div>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+<div class="row">
+	<div class="col-lg-8">				
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        
+        <div class="row">
+        		<div class="col-lg-12">
+        		<div class="main-box" style="min-height: auto;">
+				<h2>Customer Select Program</h2>
+					<div class="row">
+					
+					<!--------------------------------- POP - UP Code Start--------------------- -->
+					<div class="col-lg-12">
+									<form class="form-inline" role="form">
+										<div class="form-group">
+										<div class="col-lg-6 ">
+										 <label class="sr-only">Program</label>
+										 <select style="width:100%;" name="usr_prg_name" id="program_drop_down" >
+										 <option value='Empty' disabled selected>---Select Program---</option>
+											 {% for programs in program_list %}
+											   <option value="{{ programs.program_id }}">{{ programs.program_name }}</option>
+											 {% endfor %}
+										 </select>
+										</div>
+										<div class="col-lg-6 ">
+										 <label class="sr-only">Program</label>
+										 <select style="width:100%;display:none;" name="usr_prg_days" id="program_days_drop_down" >
+										<!--  <option selected>Select Program</option> -->
+											 {% for programs in program_list %}
+											   <option value="{{ programs.program_id }}">{{ programs.days }}</option>
+											 {% endfor %}
+										 </select>
+										</div>						
+										 <div class="col-lg-3 ">
+											<label  class="sr-only"> Start Date</label>	
+											<div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    <input  type="text" class="pickdate form-control" name="startDate" id="startDate" style="width:110%;"  placeholder="Start Date" >
+                                 </div>								
+											</div>
+										 <div class="col-lg-3 ">
+											<label class="sr-only">End Date</label>
+											<!-- <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span> -->
+                                   <input readonly class="form-control" style="width:109%;" name="endDate" id="endDate" placeholder="End Date"  type="text">
+                                <!--  </div> -->
+										</div>					
+								</div>
+						</form>							
+					</div>	
+					
+				<!--------------------------------- POP - UP Code End--------------------- -->	
+									
+				</div>													
+				</div>
+				</div>	
+				</div>
+          </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
+        <button type="button" id="addProgram" class="btn btn-primary" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>					
+</div>	
+	
+  <footer id="footer-bar">
+		<p id="footer-copyright">
+				&copy; 2015-16 <a href="http://www.trainmefit.co.uk/" target="_blank">TrainMeFit</a>
+			</p>
+	</footer>
+	
+	<!-- global scripts -->
+<script src="{% static 'assets/js/jquery.js'%}"></script>
+	<script src="{% static 'assets/js/bootstrap.js'%}"></script>
+	
+	<!-- this page specific scripts -->
+	<script src="{%static 'assets/js/jquery.slimscroll.min.js'%}"></script>
+	<script src="{%static 'assets/js/bootstrap-datepicker.js'%}"></script>
+	<script src="{% static 'assets/js/select2.min.js'%}"></script>	
+	
+	<!-- theme scripts -->
+	<script src="{% static 'assets/js/bootstrap-wizard.js'%}"></script>
+	
+	<script src="{% static 'assets/js/scripts.js'%}"></script>
+	
+	
+	<script>
+	$(function($) {
+		//tooltip init
+		$('#exampleTooltip').tooltip();
+
+		//nice select boxes
+		$('#program_drop_down').select2();
+	
+		//masked inputs
+		$("#maskedDate").mask("99/99/9999");
+		$("#maskedPhone").mask("(999) 999-9999");
+		$("#maskedPhoneExt").mask("(999) 999-9999? x99999");
+		$("#maskedTax").mask("99-9999999");
+		$("#maskedSsn").mask("999-99-9999");
+		
+		$("#maskedProductKey").mask("a*-999-a999",{placeholder:" ",completed:function(){alert("You typed the following: "+this.val());}});
+		
+		$.mask.definitions['~']='[+-]';
+		$("#maskedEye").mask("~9.99 ~9.99 999");
+	
+		//datepicker
+		$('#datepickerDate').datepicker({
+		  format: 'mm-dd-yyyy'
+		});
+
+		$('#datepickerDateComponent').datepicker();
+		
+		//daterange picker
+		$('#datepickerDateRange').daterangepicker();
+		
+		//timepicker
+		$('#timepicker').timepicker({
+			minuteStep: 5,
+			showSeconds: true,
+			showMeridian: false,
+			disableFocus: false,
+			showWidget: true
+		}).focus(function() {
+			$(this).next().trigger('click');
+		});
+		
+		//autocomplete simple
+		$('#exampleAutocompleteSimple').typeahead({                              
+			prefetch: '/data/countries.json',
+			limit: 10
+		});
+		
+		//autocomplete with templating
+		$('#exampleAutocomplete').typeahead({                              
+			name: 'twitter-oss',                                                        
+			prefetch: '/data/repos.json',                                             
+			template: [                                                              
+				'<p class="repo-language">{{language}}</p>',                              
+				'<p class="repo-name">{{name}}</p>',                                      
+				'<p class="repo-description">{{description}}</p>'                         
+			].join(''),                                                                 
+			engine: Hogan                                                               
+		});
+		
+		//password strength meter
+		$('#examplePwdMeter').pwstrength({
+			label: '.pwdstrength-label'
+		});
+		
+	});
+	
+	//===================================added=============================		
+		$("#program_drop_down").click(function()  {	
+		$('#program_days_drop_down').val($('#program_drop_down option:selected').val());
+		add_day_to_date();
+		
+	});
+	//datepicker
+		$('#startDate').datepicker({
+		  format: 'mm/dd/yyyy',
+		   minDate: 0,
+		   startDate : '1d',
+		   autoclose: true
+		});
+	
+		  $("#startDate").change(function()
+		  {		   
+			 	add_day_to_date();
+		 });	
+			 
+	
+		
+	$("#addProgram").click(function()  {
+			if($('#program_drop_down option:selected').val()=="Empty"){ 
+				alert("Please Select Program !");
+				return false;
+			}
+			
+			if($('#startDate').val()===""){ 
+				alert("Please Select Start Date!");
+				return false;
+			}
+			
+			console.log($('#user').val());
+			$.ajax({
+					   type	: 'GET',
+				      url	: '/add-customer-programs/',
+				      data  : { 'program_id':$('#program_drop_down').val(),'user_id':$('#user').val(),'startdate':$('#startDate').val(),'enddate':$('#endDate').val()},
+				      
+				      success: function(response){
+				            //  console.log(response);				             
+				            // if(response.success=='true'){
+				            //  $("#workout_table").append(
+								//		"<tr>"+				
+								//				'<td class="text-center">'+ response.program_list.program_name+'</td>'+
+								//				'<td class="text-center">'+response.program_list.total_workout+"</td>"+
+								//		"</tr>"				
+								//	);
+				            // }
+				             
+				             if (response.success=='exist')
+				             {
+				             	alert("Program is already assigned");
+
+				             }else if (response.success=='date')
+				             {
+				             	alert("This duration is already assigned to another program");
+				             }else{
+				             	alert("Program is assigned to user");
+				             	location.reload();
+				             }		
+						},	
+				});
+				
+			}); 
+			
+			
+			function add_day_to_date()
+			 {
+			 	if($("#startDate").val()==""||$("#startDate").val()==null){
+               return false;				
+				}
+			 var date = new Date($("#startDate").val());
+				days = parseInt($('#program_days_drop_down option:selected').text()); 
+				days=days-1;
+				//alert($('#program_days_drop_down option:selected').text()); 
+            if(!isNaN(date.getTime()))
+              {
+	              date.setDate(date.getDate() + days);
+		            month=date.getMonth()+1;
+		            dt=date.getDate();
+		            yr=date.getFullYear();
+		            if(month.toString().length<2)
+		            {  
+		            month="0"+month;
+		            }
+						if(date.toString().length<2){
+		                  date="0"+date;
+		            }
+		            
+					  var end_date=month+"/"+dt+"/"+yr;
+					 	
+					  $("#endDate").val(end_date);
+         
+			    } else
+			     {
+			            alert("Invalid Date");  
+			       }	
+			 }
+
+	</script>
+</body>
+</html>

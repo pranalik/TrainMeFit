@@ -1,0 +1,19 @@
+.circular {
+
+	border-radius: 20px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	white-space: nowrap;
+	}
+.background {
+    width: 50px;
+    background-color: #A9A9A9;
+    border-radius:25px;
+    height: 50px;
+}	
+	
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}	
+	

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html>
+ {% load staticfiles %}
+<head>
+    <meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>View Workout</title>
+	
+    <!-- bootstrap -->
+    <link href="{% static 'assets/css/bootstrap/bootstrap.css'%}" rel="stylesheet" />
+
+    <!-- libraries -->
+    <link href="{% static 'assets/css/libs/font-awesome.css'%}" type="text/css" rel="stylesheet" />
+
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/compiled/layout.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/compiled/elements.css'%}">
+	<link rel="stylesheet" href="{% static 'assets/css/libs/select2.css'%}" type="text/css" />
+      <!-- google font libraries -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300|Titillium+Web:200,300,400' rel='stylesheet' type='text/css'>
+    
+  
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-49262924-1', 'phoonio.com');
+	  ga('send', 'pageview');
+
+	</script>
+<style type="text/css">
+	.modal-field {
+	width:100%;
+	}
+</style>
+</head>
+<body>
+	<header class="navbar" id="header-navbar">
+		<div class="container">
+			<a href="#" id="logo" class="navbar-brand col-md-3 col-sm-3 col-xs-12">
+				<img style="width: 30px;margin-top: -5px;" src="{% static 'assets/img/trainmefit.png'%}" alt=""><span>TrainMeFit</span>
+			</a>
+			
+			<button class="navbar-toggle" data-target=".navbar-ex1-collapse" data-toggle="collapse" type="button">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="fa fa-bars"></span>
+			</button>
+			
+			<div class="nav-no-collapse pull-right" id="header-nav">
+				<ul class="nav navbar-nav pull-right">
+					<!-- <li class="mobile-search">
+						<a class="btn">
+							<i class="fa fa-search"></i>
+						</a>
+						
+						<div class="drowdown-search">
+							<form role="search">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Search...">
+									<i class="fa fa-search nav-search-icon"></i>
+								</div>
+							</form>
+						</div>
+						
+					</li>
+					<li class="dropdown hidden-xs">
+						<a class="btn dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-warning"></i>
+							<span class="count">8</span>
+						</a>
+						<ul class="dropdown-menu notifications-list">
+							<li class="pointer">
+								<div class="pointer-inner">
+									<div class="arrow"></div>
+									<div class="arrow-border"></div>
+								</div>
+							</li>
+							<li class="item-header">You have 6 new notifications</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-comment"></i>
+									<span class="content">New comment on ‘Awesome P...</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-plus"></i>
+									<span class="content">New user registration</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-envelope"></i>
+									<span class="content">New Message from George</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-shopping-cart"></i>
+									<span class="content">New purchase</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-eye"></i>
+									<span class="content">New order</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item-footer">
+								<a href="#">
+									View all notifications
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown hidden-xs">
+						<a class="btn dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-envelope-o"></i>
+							<span class="count">16</span>
+						</a>
+						<ul class="dropdown-menu notifications-list messages-list">
+							<li class="pointer">
+								<div class="pointer-inner">
+									<div class="arrow"></div>
+									<div class="arrow-border"></div>
+								</div>
+							</li>
+							<li class="item first-item">
+								<a href="#">
+									<img src="img/samples/messages-photo-1.png" alt=""/>
+									<span class="content">
+										<span class="content-headline">
+											George Clooney
+										</span>
+										<span class="content-text">
+											Look, just because I don't be givin' no man a foot massage don't make it 
+											right for Marsellus to throw...
+										</span>
+									</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<img src="img/samples/messages-photo-2.png" alt=""/>
+									<span class="content">
+										<span class="content-headline">
+											Emma Watson
+										</span>
+										<span class="content-text">
+											Look, just because I don't be givin' no man a foot massage don't make it 
+											right for Marsellus to throw...
+										</span>
+									</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<img src="img/samples/messages-photo-3.png" alt=""/>
+									<span class="content">
+										<span class="content-headline">
+											Robert Downey Jr.
+										</span>
+										<span class="content-text">
+											Look, just because I don't be givin' no man a foot massage don't make it 
+											right for Marsellus to throw...
+										</span>
+									</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item-footer">
+								<a href="#">
+									View all messages
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="hidden-xs">
+						<a class="btn">
+							<i class="fa fa-cog"></i>
+						</a>
+					</li> -->
+					<li class="dropdown profile-dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<img src="img/samples/profile-photo.png" alt=""/>
+							<span class="hidden-xs">{{ request.session.login_user }}</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="user-profile.html"><i class="fa fa-user"></i>Profile</a></li>
+							<li><a href="#"><i class="fa fa-cog"></i>Settings</a></li>
+							<li><a href="#"><i class="fa fa-envelope-o"></i>Messages</a></li>
+							<li><a href="/sign-out-admin/"><i class="fa fa-power-off"></i>Logout</a></li>
+						</ul>
+					</li>
+					<li class="hidden-xxs">
+						<a href="/sign-out-admin/" class="btn">
+							<i class="fa fa-power-off"></i>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2" id="nav-col">
+				<section id="col-left">
+					<div class="collapse navbar-collapse navbar-ex1-collapse" id="sidebar-nav">	
+						<ul class="nav nav-pills nav-stacked">
+							<li>
+								<a href="/dashboard/">
+									<i class="fa fa-dashboard"></i>
+									<span>Dashboard</span>
+								</a>
+							</li>
+							<li>
+								<a href="/user-section/">
+									<i class="fa fa-users"></i>
+									<span>Customers</span>
+									
+								</a>								
+							</li>
+							<li>
+								<a href="/program-list/">
+									<i class="fa fa-calendar"></i>
+									<span>Programs</span>
+								</a>
+							</li>
+							<li>
+								<a href="/workout/">
+									<i class="fa fa-star-o"></i>
+									<span>Workouts</span>
+								</a>
+
+							</li>
+							<li>
+								<a href="/exercise-list/" >
+									<i class="fa fa-rocket"></i>
+									<span>Exercises</span>
+								</a>
+							</li>
+							<!-- <li>
+								<a href="#">
+									<i class="fa fa-gbp"></i>
+									<span>Payments</span>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="fa fa-gears"></i>
+									<span>Services</span>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="fa fa-table"></i>
+									<span>Master Tables</span>
+								</a>
+							</li> -->
+						</ul>
+					</div>
+				</section>
+			</div>
+			<div class="col-md-10" id="content-wrapper" style="min-height: 85vh;">
+				<div class="row">
+					<div class="col-lg-12">
+					
+						<div class="clearfix">
+							<h1 class="pull-left">Workouts</h1>
+						</div>
+						
+								<div class="main-box clearfix">
+								 <form role="form" action="/update-workout/" method="POST">
+								 <input type="hidden" value="{{ workout_id }}" name="workout_id" ></input>
+								 {% csrf_token %}
+								  <input type="hidden" value="{{ workout_id }}" id="workout_id" name="work_id" ></input> 
+								  <input type="hidden" name="workout_exercise_list" id="workout_exercise_list"></input>
+								   <div class="row">
+									<div class="clearfix">
+										<h2 class="pull-left">View Workout</h2>
+										
+										<div class="filter-block pull-right">
+											<a href="/workout/" class="btn btn-primary pull-right" style="width: 175px;">
+												<i class="fa  fa-lg"></i>Cancel
+											</a>	
+											
+						               <a href="/edit-workout/?workout_id={{ workout_id }}" class="btn btn-primary pull-right" style="width: 175px;">
+												<i class="fa  fa-lg"></i>Edit
+											</a>
+										</div>
+									</div>
+									</div>
+										
+									<div class="row">	
+									  <div class="col-lg-6"> 
+										  <div class="form-group">
+											<label >Name</label>
+											<input type="text" class="form-control" id="workout_id" readonly name="workout_name" required="required" value="{{ workout_name }}" pattern="[a-zA-Z0-9\s]+" placeholder="" style="width: 100%;"></input>
+											</div>
+										  </div>
+										  
+										  <div class="col-lg-3"> 
+										  <div class="form-group">
+											<label>Workout Type</label>
+											<input type="text" class="form-control" readonly name="wk_type" id="WKT_TYPE" required="required" value="{{ wk_type }}" pattern="[a-zA-Z0-9\s]+" placeholder="" style="width: 100%;"></input>
+											</div>
+										  </div>
+										  
+										  <div class="col-lg-3"> 
+										  <div class="form-group">
+											<label >Workout Intensity</label>
+											<input type="text" class="form-control"  readonly name="wk_intensity" id="WKT_INTENSITY" required="required" value="{{ wk_intensity }}" pattern="[a-zA-Z0-9\s]+" placeholder="" style="width: 100%;"></input>
+											</div>
+										  </div>
+										</div>  
+		
+										<div class="row">
+							         <div class="col-lg-3">
+												  <div class="form-group">
+													<label for="exampleInputEmail1">No of Exercises</label>
+													<input  type="number" class="form-control" name="number_of_exercises" readonly min="0" max="12" step="1" required="required" value="{{ number_of_exercises }}" placeholder=""></input>
+													</div>
+										</div>	
+										
+										<div class="col-lg-3">
+												  <div class="form-group">
+													<label for="exampleInputEmail1">Time</label>
+													<input type="text" class="form-control" readonly pattern="([01]?[0-9]{1}|2[0-3]{1}):[0-5]{1}[0-9]{1}:[0-5]{1}[0-9]{1}" id="exampleInputEmail1" required="required" placeholder="HH:MM:SS" name="approximate_workout_time" value="{{ approximate_workout_time }}"  ></input>
+													</div>							
+										</div>
+										
+										 <div class="col-lg-3">											   
+												<label >Workout Status</label>													
+												<input type="text" class="form-control" name="status" value="{{ status }}" disabled=""></input>
+											</div>					
+									</div>						
+									
+									
+									<div class="row">	
+									  <div class="col-lg-3"> 
+										  <div class="form-group">
+											<label >Created By</label>
+											<input type="text" class="form-control" id="created_id" readonly name="created_name" required="required" value="{{ created_name }}" pattern="[a-zA-Z\s]+" placeholder="" style="width: 100%;"></input>
+											</div>
+										  </div>
+										  
+										  <div class="col-lg-3">
+												  <div class="form-group">
+													<label for="exampleInputEmail1">Created Date</label>
+													<input type="text" class="form-control" readonly  id="created_date" required="required"  name="created_date" value="{{ created_date }}"  ></input>
+													</div>							
+										</div>
+										
+										 <div class="col-lg-3"> 
+										  <div class="form-group">
+											<label for="exampleInputEmail1">Updated By</label>
+											<input type="text" class="form-control" id="updated_by" readonly name="updated_by" required="required" value="{{ updated_by }}" pattern="[a-zA-Z0-9\s]+" placeholder="" style="width: 100%;"></input>
+											</div>
+										  </div>
+										  
+										    <div class="col-lg-3">
+												  <div class="form-group">
+													<label for="exampleInputEmail1">Updated Date</label>
+													<input type="text" class="form-control" readonly  id="updated_date" required="required"  name="updated_date" value="{{ updated_date }}"  ></input>
+													</div>							
+											</div>										  
+										</div>   										
+
+										
+										<div class="table-responsive">
+										<table class="table" id="exercise_table">
+											<thead>
+												<tr>
+												<th><span>Exercise Name</span></th>
+													<th ><span>Gender</span></th>
+													<th ><span>Bodypart</span></th>
+													<th ><span>Total Reps</span></th>
+													<th ><span>Total Sets</span></th>
+													<th ><span>Time Between Sets </span></th>
+													<th ><span>Rest Time</span></th>
+													<th ><span>Total Exercise Time</span></th>
+													<!-- <th><span>Delete</span></th> -->
+												</tr>
+											</thead>
+											<tbody>
+													{% for ex in ex_list  %}
+													<tr>
+														 <td> {{ ex.ex_name }} </td>	
+														 <td> {{ ex.ex_gender }} </td>
+														 <td> {{ ex.ex_bodypart }} </td>
+														 <td> {{ ex.ex_tot_rep }} </td>
+														 <td> {{ ex.ex_tot_set }} </td>
+														 <td> {{ ex.ex_tim_bet_set }} </td>
+														 <td> {{ ex.ex_res_tim }} </td>
+														 <td> {{ ex.ex_tot_ex_tim }} </td>
+														<!--  <td> 
+														 	<!-- 	<div class="delete" class="table-link danger" style="cursor: pointer;" id="{{ ex.work_ex_id }}"  >
+															 		<span class="fa-stack" > 
+															 			<i class="fa fa-square fa-stack-2x"></i> 
+															 			<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i> </span>
+														 		</div> -->
+														 		
+														 		
+														<!-- <a class="delete table-link danger" style="cursor: pointer;" id="{{ ex.work_ex_id }}">
+															<span class="fa-stack">
+																<i class="fa fa-square fa-stack-2x"></i>
+																<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+															</span>
+														</a>	 -->													
+														  <!-- <a class="table-link danger" onclick="deleteWorkoutExercise()" class style="cursor: pointer;" >
+															<span class="" >
+																<i class="fa fa-square fa-stack-2x"></i>
+																<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+															</span>
+														</a>	
+														 -->
+													</tr>	
+													{% endfor %}										
+											</tbody>
+										</table>
+									</div>
+									</form>	
+									</div>		
+									</div>
+								</div>
+							</div>
+						</div>
+					
+					</div>
+			
+			
+	<footer id="footer-bar">
+	<p id="footer-copyright">
+			&copy; 2015-16 <a href="http://www.trainmefit.co.uk/" target="_blank">TrainMeFit</a>
+		</p>
+	</footer>
+	
+	<!-- global scripts -->
+	<script src="{% static 'assets/js/jquery.js'%}"></script>
+	<script src="{% static 'assets/js/bootstrap.js'%}"></script>
+	
+	<!-- this page specific scripts -->
+	<script src="{% static 'assets/js/bootstrap-wizard.js'%}"></script>
+	<script src="{% static 'assets/js/select2.min.js'%}"></script>
+		
+	<!-- theme scripts -->
+	<script src="{% static 'assets/js/scripts.js'%}"></script>
+  
+   <script>
+	$(function($) {
+		//tooltip init
+		$('#exampleTooltip').tooltip();
+
+		//nice select boxes
+		$('#sel2').select2();
+		$('#bodypart').select2();
+		$('#exercise_gender').select2();
+		$('#exercise_category').select2();
+		$('#exercise').select2();
+		
+		$('#sel2Multi').select2({
+			placeholder: 'Select a Country',
+			allowClear: true
+		});
+		});
+	</script> 
+<script type="text/javascript" language="javascript">
+$(document).ready(function() {
+
+      $("#exercise_gender").change(function(event){
+		      $.ajax({
+				   type	: 'GET',
+			      url	: '/get-exercises-by-bodypart/',
+			      data  : {'body_part_id':$('#bodypart').val(),'exercise_category':$('#exercise_category').val(),'exercise_gender':$('#exercise_gender').val() },
+			      
+			      success: function(response){
+				      console.log(response.exercise_list);
+				      $('#exercise').html('');
+				      $.each(response.exercise_list, function(index, item) {
+				      		$('#exercise').append('<option value="' +item.exercise_id + '">'+item.exercise_name+'</option>');
+								console.log(index +' -- ' +item.exercise_id + '--' + item.exercise_name);
+						});
+				   
+					},
+					
+				});
+		 });
+});
+   
+</script>
+
+<script type="text/javascript" >
+$(document).ready(function(){
+
+	$("#btnAddExercise").click(function()  {
+		console.log($('#exercise').val());
+		   $.ajax({
+				   type	: 'GET',
+			      url	: '/add-exercise-in-workout/',
+			      data  : {'workout_id':$('#workout_id').val(),'exercise_id':$('#exercise').val() },
+			      success: function(response){
+			      	console.log('Response : '+response);
+							/* $("#exercise_table").append(
+											"<tr>"+
+											'<td class="text-left">'+ response.exercise.exercise_name + "</td>"+
+											'<td class="text-center">'+ response.exercise.exercise_category.exercise_category_name +"</td>"+
+											'<td class="text-center">'+ response.exercise.exercise_gender +"</td>"+
+											'<td class="text-center">'+ response.exercise.body_part_id.exercise_body_part_name +"</td>"
+													
+											);				     */
+						$("#exercise_table").append(
+							"<tr>"+
+							'<td class="text-left">'+$("#exercise option:selected").text()+ "</td>"+
+							
+							//'<td class="text-center">'+$('#exercise').val()+ "</td>"+
+							'<td class="text-center">'+ $('#exercise_category option:selected').text() +"</td>"+
+							'<td class="text-center">'+ $('#exercise_gender').val()+"</td>"+
+							'<td class="text-center">'+ $('#bodypart option:selected').text()+"</td>"+
+							'<td> <a class="delete table-link danger" id="'+ response.exercise +'" style="cursor: pointer;" ><span class="fa-stack"><i class="fa fa-square fa-stack-2x"></i>' +
+							'<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i> </span></a> </td></tr>'
+						);
+						location.reload();
+					},
+				});
+		});
+		
+		function validateAndUpdateExerciseList(){
+		 
+					$('#workout_exercise_list').val(exercise_add);
+
+  		 }
+		
+		$('.delete').click(function(){
+			var tr = this;
+			console.log('Hello')
+			$.ajax({
+				   type	: 'GET',
+			      url	: '/delete-exercise-from-workout/',
+			      data  : {'deleteWorkoutExercise_id': this.id },
+			      success: function(response){
+			      console.log('I m deleting');
+			      console.log(response);
+			      	if(response.success == 'true'){
+						  $(tr).parents('tr').remove();
+						}
+					},
+			}); 
+		
+		});		
+		
+		
+	});
+	
+	
+</script>
+
+</body>
+</html>

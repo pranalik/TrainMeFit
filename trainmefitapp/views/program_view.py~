@@ -1,0 +1,61 @@
+from django.shortcuts import render
+from django.shortcuts import render_to_response
+from datetime import datetime
+from django.contrib.auth.models import User
+from time import gmtime, strftime
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+import pdb
+import json
+##import datetime
+import time
+from django.db import IntegrityError
+# importing constants
+from constants import AppUserConstants, ExceptionLabel
+from trainmefitapp.models import *
+
+
+
+def get_category_list():
+    category_list =[]
+    try:
+        categories = Category.objects.all()
+        for category in categories:
+            category_list.append({'category_id':category.exercise_category_id, 'category_name': category.exercise_category_name})
+    except Exception, e:
+        print 'Exception : ',e
+    return category_list
+
+def get_category_list():
+    category_list =[]
+    try:
+        categories = Category.objects.all()
+        for category in categories:
+            category_list.append({'category_id':category.exercise_category_id, 'category_name': category.exercise_category_name})
+    except Exception, e:
+        print 'Exception : ',e
+    return category_list
+    
+def get_workout_list(program_id):
+    workout_list =[]
+    try:
+        workouts = program_workout_mapping.objects.all().filter(Program_id=program_id);
+        for workout in workouts:
+            workout_list.append({'workout_id':program_workout_mapping.workout_id});
+    except Exception, e:
+        print 'Exception : ',e
+    return workout_list;
+    
+    
+def get_exercises_list(workout_id):
+    workout_list =[]
+    try:
+        workouts = program_workout_mapping.objects.all().filter(Program_id=program_id);
+        for workout in workouts:
+            workout_list.append({'workout_id':program_workout_mapping.workout_id});
+    except Exception, e:
+        print 'Exception : ',e
+    return workout_list;
+    
+    

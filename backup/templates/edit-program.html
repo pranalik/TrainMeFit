@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+ {% load staticfiles %}
+<head>
+    <meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Edit Program</title>
+	
+    <!-- bootstrap -->
+    <link href="{% static 'assets/css/bootstrap/bootstrap.css'%}" rel="stylesheet" />
+
+    <!-- libraries -->
+    <link href="{% static 'assets/css/libs/font-awesome.css'%}" type="text/css" rel="stylesheet" />
+
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/compiled/layout.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/compiled/elements.css'%}">
+
+    <!-- google font libraries -->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300|Titillium+Web:200,300,400' rel='stylesheet' type='text/css'>
+    
+  
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-49262924-1', 'phoonio.com');
+	  ga('send', 'pageview');
+
+	</script>
+<style type="text/css">
+	.modal-field {
+	width:100%;
+	}
+</style>
+</head>
+<body>
+	<header class="navbar" id="header-navbar">
+		<div class="container">
+			<a href="#" id="logo" class="navbar-brand col-md-3 col-sm-3 col-xs-12">
+				<img style="width: 30px;margin-top: -5px;" src="{% static 'assets/img/trainmefit.png'%}" alt=""><span>TrainMeFit</span>
+			</a>
+			
+			<button class="navbar-toggle" data-target=".navbar-ex1-collapse" data-toggle="collapse" type="button">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="fa fa-bars"></span>
+			</button>
+			
+			<div class="nav-no-collapse pull-right" id="header-nav">
+				<ul class="nav navbar-nav pull-right">
+					<li class="mobile-search">
+						<a class="btn">
+							<i class="fa fa-search"></i>
+						</a>
+						
+						<div class="drowdown-search">
+							<form role="search">
+								<div class="form-group">
+									<input type="text" class="form-control" placeholder="Search...">
+									<i class="fa fa-search nav-search-icon"></i>
+								</div>
+							</form>
+						</div>
+						
+					</li>
+					<li class="dropdown hidden-xs">
+						<a class="btn dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-warning"></i>
+							<span class="count">8</span>
+						</a>
+						<ul class="dropdown-menu notifications-list">
+							<li class="pointer">
+								<div class="pointer-inner">
+									<div class="arrow"></div>
+									<div class="arrow-border"></div>
+								</div>
+							</li>
+							<li class="item-header">You have 6 new notifications</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-comment"></i>
+									<span class="content">New comment on ‘Awesome P...</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-plus"></i>
+									<span class="content">New user registration</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-envelope"></i>
+									<span class="content">New Message from George</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-shopping-cart"></i>
+									<span class="content">New purchase</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<i class="fa fa-eye"></i>
+									<span class="content">New order</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item-footer">
+								<a href="#">
+									View all notifications
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="dropdown hidden-xs">
+						<a class="btn dropdown-toggle" data-toggle="dropdown">
+							<i class="fa fa-envelope-o"></i>
+							<span class="count">16</span>
+						</a>
+						<ul class="dropdown-menu notifications-list messages-list">
+							<li class="pointer">
+								<div class="pointer-inner">
+									<div class="arrow"></div>
+									<div class="arrow-border"></div>
+								</div>
+							</li>
+							<li class="item first-item">
+								<a href="#">
+									<img src="img/samples/messages-photo-1.png" alt=""/>
+									<span class="content">
+										<span class="content-headline">
+											George Clooney
+										</span>
+										<span class="content-text">
+											Look, just because I don't be givin' no man a foot massage don't make it 
+											right for Marsellus to throw...
+										</span>
+									</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<img src="img/samples/messages-photo-2.png" alt=""/>
+									<span class="content">
+										<span class="content-headline">
+											Emma Watson
+										</span>
+										<span class="content-text">
+											Look, just because I don't be givin' no man a foot massage don't make it 
+											right for Marsellus to throw...
+										</span>
+									</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item">
+								<a href="#">
+									<img src="img/samples/messages-photo-3.png" alt=""/>
+									<span class="content">
+										<span class="content-headline">
+											Robert Downey Jr.
+										</span>
+										<span class="content-text">
+											Look, just because I don't be givin' no man a foot massage don't make it 
+											right for Marsellus to throw...
+										</span>
+									</span>
+									<span class="time"><i class="fa fa-clock-o"></i>13 min.</span>
+								</a>
+							</li>
+							<li class="item-footer">
+								<a href="#">
+									View all messages
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li class="hidden-xs">
+						<a class="btn">
+							<i class="fa fa-cog"></i>
+						</a>
+					</li>
+					<li class="dropdown profile-dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<img src="img/samples/profile-photo.png" alt=""/>
+							<span class="hidden-xs">Scarlett Johansson</span> <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="user-profile.html"><i class="fa fa-user"></i>Profile</a></li>
+							<li><a href="#"><i class="fa fa-cog"></i>Settings</a></li>
+							<li><a href="#"><i class="fa fa-envelope-o"></i>Messages</a></li>
+							<li><a href="/sign-out-admin/"><i class="fa fa-power-off"></i>Logout</a></li>
+						</ul>
+					</li>
+					<li class="hidden-xxs">
+						<a href="/sign-out-admin/" class="btn">
+							<i class="fa fa-power-off"></i>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2" id="nav-col">
+				<section id="col-left">
+					<div class="collapse navbar-collapse navbar-ex1-collapse" id="sidebar-nav">	
+						<ul class="nav nav-pills nav-stacked">
+							<li>
+								<a href="/dashboard/">
+									<i class="fa fa-dashboard"></i>
+									<span>Dashboard</span>
+								</a>
+							</li>
+							<li>
+								<a href="/user-section/">
+									<i class="fa fa-users"></i>
+									<span>Customers</span>
+									
+								</a>								
+							</li>
+							<li>
+								<a href="/program-list/">
+									<i class="fa fa-calendar"></i>
+									<span>Programs</span>
+								</a>
+							</li>
+							<li>
+								<a href="/workout/">
+									<i class="fa fa-star-o"></i>
+									<span>Workouts</span>
+								</a>
+
+							</li>
+							<li>
+								<a href="/exercise-list/" >
+									<i class="fa fa-rocket"></i>
+									<span>Exercises</span>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="fa fa-gbp"></i>
+									<span>Payments</span>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="fa fa-gears"></i>
+									<span>Services</span>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="fa fa-table"></i>
+									<span>Master Tables</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</section>
+			</div>
+			<div class="col-md-10" id="content-wrapper">
+				<div class="row">
+					<div class="col-lg-12">
+					
+						<div class="clearfix">
+							<h1 class="pull-left">Programs</h1>						
+						</div>
+								<div class="main-box clearfix">
+								   <div class="row">
+										<div class="clearfix">
+											<h2 class="pull-left">Edit Program</h2>
+											
+											<div class="filter-block pull-right">
+												<a href="programs.html" class="btn btn-primary pull-right" style="width: 175px;">
+													<i class="fa  fa-lg"></i>Cancel
+												</a>	
+												<a href="#" class="btn btn-primary pull-right" style="width: 175px;">
+													<i class="fa  fa-lg"></i>Save
+												</a>
+											</div>
+										</div>
+								 </div>
+										
+								<div class="row">	
+									 <div class="col-lg-6"> 
+									    <form role="form">
+										  	<div class="form-group">   
+												<label for="exampleInputEmail1">Name</label>
+												<input type="email" class="form-control" id="exampleInputEmail1" placeholder="" readonly style="width: 100%;"></input>
+											</div>
+										</form>	
+									</div>
+								</div>  
+										
+									<div class="row">
+							         <div class="col-lg-3">
+											<form role="form">
+												  <div class="form-group">
+													<label for="exampleInputEmail1">Start Date</label>
+													<input type="email" class="form-control" id="exampleInputEmail1" placeholder=""></input>
+													</div>
+											</form>							
+										</div>	
+										
+										<div class="col-lg-3">
+											<form role="form">
+												  <div class="form-group">
+													<label for="exampleInputEmail1">End Date</label>
+													<input type="email" class="form-control" id="exampleInputEmail1" placeholder="" ></input>
+													</div>
+											</form>							
+										</div>
+										
+										<div class="col-lg-3">
+											<form role="form">
+												  <div class="form-group">
+													<label for="exampleInputEmail1">% Completed</label>
+													<input type="email" class="form-control" id="exampleInputEmail1" placeholder="" ></input>
+													</div>
+											</form>							
+										</div>
+										
+										<div class="col-lg-3">
+											<form role="form">
+												  <div class="form-group">
+													<label for="exampleInputEmail1">Date Updated</label>
+													<input type="email" class="form-control" id="exampleInputEmail1" placeholder=""></input>
+													</div>
+											</form>							
+										</div>						
+									</div>
+										
+										<div class="table-responsive">
+										<table class="table">
+											<thead>
+												<tr>
+													<th><span>Day</span></th>
+													<th class="text-center"><span>Workout</span></th>
+													<th class="text-center"><span>Exercises</span></th>
+													
+													<th>&nbsp;</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>
+														Monday
+													</td>
+													<td class="text-center">
+														  Workout 1
+													</td>
+													<td class="text-center">
+														<span>10</span>
+													</td>
+													
+													<td style="width: 15%;">
+													
+													<a  class="table-link" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+															<span class="fa-stack">
+																<i class="fa fa-square fa-stack-2x"></i>
+																<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+															</span>
+														</a>
+													<a href="#" class="table-link danger">
+															<span class="fa-stack">
+																<i class="fa fa-square fa-stack-2x"></i>
+																<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+															</span>
+														</a>														
+												</td>	
+												</tr>
+												<tr>
+													<td>
+														Tuesday
+													</td>
+													<td class="text-center">
+														  Workout 2
+													</td>
+													<td class="text-center">
+														<span>10</span>
+													</td>
+													
+												<td style="width: 15%;">
+													<a  class="table-link" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+															<span class="fa-stack">
+																<i class="fa fa-square fa-stack-2x"></i>
+																<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+															</span>
+														</a>
+													<a href="#" class="table-link danger">
+															<span class="fa-stack">
+																<i class="fa fa-square fa-stack-2x"></i>
+																<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+															</span>
+														</a>				
+												</td>
+												</tr>
+												<tr>
+													<td>
+														Wednesday
+													</td>
+													<td class="text-center">
+														  Workout 3
+													</td>
+													<td class="text-center">
+														<span>10</span>
+													</td>
+													<td style="width: 15%;">
+													<a  class="table-link" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+															<span class="fa-stack">
+																<i class="fa fa-square fa-stack-2x"></i>
+																<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+															</span>
+														</a>	
+													<a href="#" class="table-link danger">
+															<span class="fa-stack">
+																<i class="fa fa-square fa-stack-2x"></i>
+																<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+															</span>
+														</a>			
+												</td>
+												</tr>
+												<tr>
+													<td>
+														Thursday
+													</td>
+													<td class="text-center">
+														  Rest Day
+													</td>
+													<td class="text-center">
+														<span>--</span>
+													</td>
+													<td style="width: 15%;">
+													<a  class="table-link" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+															<span class="fa-stack">
+																<i class="fa fa-square fa-stack-2x"></i>
+																<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+															</span>
+														</a>
+													<a href="#" class="table-link danger">
+															<span class="fa-stack">
+																<i class="fa fa-square fa-stack-2x"></i>
+																<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+															</span>
+														</a>				
+												</td>
+												</tr>
+												<tr>
+													<td>
+														Friday
+													</td>
+													<td class="text-center">
+														  Workout 4
+													</td>
+													<td class="text-center">
+														<span>10</span>
+													</td>
+													<td style="width: 15%;">
+													<a  class="table-link" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+															<span class="fa-stack">
+																<i class="fa fa-square fa-stack-2x"></i>
+																<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+															</span>
+														</a>
+													<a href="#" class="table-link danger">
+															<span class="fa-stack">
+																<i class="fa fa-square fa-stack-2x"></i>
+																<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+															</span>
+														</a>		
+												</td>
+												</tr>
+												<tr>
+													<td>
+														Saturday
+													</td>
+													<td class="text-center">
+														  Rest Day
+													</td>
+													<td class="text-center">
+														<span>--</span>
+													</td>
+													<td style="width: 15%;">
+													<a  class="table-link" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+															<span class="fa-stack">
+																<i class="fa fa-square fa-stack-2x"></i>
+																<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+															</span>
+														</a>		
+												
+												 <a href="#" class="table-link danger">
+															<span class="fa-stack">
+																<i class="fa fa-square fa-stack-2x"></i>
+																<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+															</span>
+														</a>	
+												</td>
+												</tr>
+												<tr>
+													<td>
+														Sunday
+													</td>
+													<td class="text-center">
+														  Workout 5
+													</td>
+													<td class="text-center">
+														<span>10</span>
+													</td>
+													<td style="width: 15%;">
+													<a  class="table-link" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+															<span class="fa-stack">
+																<i class="fa fa-square fa-stack-2x"></i>
+																<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+															</span>
+														</a>		
+												
+												 <a href="#" class="table-link danger">
+															<span class="fa-stack">
+																<i class="fa fa-square fa-stack-2x"></i>
+																<i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+															</span>
+														</a>	
+												</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+										
+									</div>		
+									</div>
+									<ul class="pagination pull-right">
+										<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+										<li><a href="#">1</a></li>
+										<li><a href="#">2</a></li>
+										<li><a href="#">3</a></li>
+										<li><a href="#">4</a></li>
+										<li><a href="#">5</a></li>
+										<li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					
+					</div>
+	<div class="row">
+		<div class="col-lg-8">				
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-body">      
+				     <div class="row">
+			        		<div class="col-lg-12">
+				        		<div class="main-box">
+									<h2>Workout</h2>
+										<div class="row">
+											<form class="form-inline" role="form">
+												<div class="form-group">
+													<div class="col-lg-12 ">
+														<label class="sr-only" for="exampleInputEmail2">Workout</label>
+														<input class="form-control" style="width:110%" id="exampleInputEmail2" placeholder="Workout" type="text">
+													</div>										 									
+												</div>
+											</form>	
+										</div>													
+									</div>
+							</div>	
+					</div>
+			    </div>
+				  <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal" style="width: 22%;">Close</button>
+			        <button type="button" class="btn btn-primary">Save changes</button>
+		      	</div>
+			  </div>
+			</div>
+	 	</div>
+	</div>					
+</div>		
+	<footer id="footer-bar">
+	<p id="footer-copyright">
+			&copy; 2015-16 <a href="http://www.trainmefit.co.uk/" target="_blank">TrainMeFit</a>
+		</p>
+	</footer>
+	
+	<!-- global scripts -->
+	<script src="{% static 'assets/js/jquery.js'%}"></script>
+	<script src="{% static 'assets/js/bootstrap.js'%}"></script>
+	
+	<!-- this page specific scripts -->
+	<script src="{% static 'assets/js/bootstrap-wizard.js'%}"></script>
+	
+	<!-- theme scripts -->
+	<script src="{% static 'assets/js/scripts.js'%}"></script>	
+</body>
+</html>
