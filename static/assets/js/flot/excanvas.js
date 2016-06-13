@@ -52,7 +52,7 @@ if (!document.createElement('canvas').getContext) {
   var IE_VERSION = +navigator.userAgent.match(/MSIE ([\d.]+)?/)[1];
 
   /**
-   * This funtion is assigned to the <canvas> elements as element.getContext().
+   * This function is assigned to the <canvas> elements as element.getContext().
    * @this {HTMLElement}
    * @return {CanvasRenderingContext2D_}
    */
