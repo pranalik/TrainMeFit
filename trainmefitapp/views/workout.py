@@ -390,7 +390,7 @@ def edit_workout_exercise0101(request):
                     workout_exercise_obj.workout_exercise_rest_time=wk.get('Rest Time')
                     workout_exercise_obj.workout_exercise_time_between_set =  wk.get('Time Between Sets')
                     workout_exercise_obj.save()            
-            #--------------------------------get Excercise------------------------------------
+            #--------------------------------get Exercise------------------------------------
             ex_list = WorkoutExerciseMap.objects.filter(workout_id=workout_obj)
             exercise_list=[]
             for ex in ex_list:

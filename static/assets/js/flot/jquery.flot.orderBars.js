@@ -12,7 +12,7 @@
  * If 2 series have the same order param, they are ordered by the position in the array;
  *
  * The plugin adjust the point by adding a value depanding of the barwidth
- * Exemple for 3 series (barwidth : 0.1) :
+ * Example for 3 series (barwidth : 0.1) :
  *
  *          first bar dÃ©calage : -0.15
  *          second bar dÃ©calage : -0.05
